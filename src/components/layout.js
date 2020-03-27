@@ -9,8 +9,13 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
+
+import { Container, Navbar } from "react-bootstrap"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+
 import "./layout.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,21 +30,22 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
-        <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
-      </div>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="/"><FontAwesomeIcon icon={faSignLanguage}/> {data.site.siteMetadata.title}</Navbar.Brand>
+      </Navbar>
+
+      <main>
+        <Container className="pt-5">
+          { children }
+        </Container>
+      </main>
+
+
+    <footer className="my-4">
+      <Container className="border-top pt-4">
+      © {new Date().getFullYear()}
+      </Container>
+    </footer>
     </>
   )
 }
