@@ -36,16 +36,6 @@ exports.createPages = async ({ actions, graphql }) => {
 
         }
     `)
-
-    const signData = result.data.allSign.nodes
-
-    signData.forEach(sign => {
-        createPage({
-            path: `/sign/${sign.sign}`,
-            component: require.resolve(`./src/templates/sign-template.js`),
-            context: { sign },
-        })
-    })
 }
 
 function makeSignNode(sign, {createNodeId, createContentDigest}) {
