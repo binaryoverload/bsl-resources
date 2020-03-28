@@ -5,7 +5,7 @@ import "./toggle_button.css"
 
 import { ToggleButton as BootstrapToggle } from "react-bootstrap"
 
-const ToggleButton = ({ value, children, name }) => {
+const ToggleButton = ({ variant, value, children, name, className }) => {
     const [checked, setChecked] = useState(false)
 
     return (
@@ -17,8 +17,9 @@ const ToggleButton = ({ value, children, name }) => {
                 setChecked(!checked)
             }}
             name={name}
-            className="toggle-button"
-            block>
+            className={`toggle-button m-0 ${className}`}
+            variant={variant}
+            >
             {children}
         </BootstrapToggle>
     )
