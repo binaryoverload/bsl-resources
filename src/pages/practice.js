@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { titleCase } from "../utils/title-case"
 
-function useQuerySigns(data) {
-    let params = new URLSearchParams(window.location.search.slice(1));
+function useQuerySigns(data, location) {
+    let params = new URLSearchParams(location);
     return useMemo(() => {
         if (params.has("category") && params.get("category")) {
             const categories = params.get("category").split(",")
@@ -78,9 +78,9 @@ const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => (
     </>
 )
 
-const PracticePage = ({ data }) => {
+const PracticePage = ({ data, location }) => {
 
-    let signs = useQuerySigns(data)
+    let signs = useQuerySigns(data, location)
 
     const randomSign = () => {
         const filteredSigns = signs.filter(s => s.id !== sign?.id);
