@@ -1,15 +1,18 @@
 
-import React from "react"
+import React, { useState } from "react"
 
 import { titleCase } from "../utils/title-case"
 
 import { Button, Card, Nav } from "react-bootstrap"
-import ToggleButton from "../components/toggle-button"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'gatsby'
 
-const CategorySelection = ({ categories, changeCallback }) => {
+import { CategorySelection, CategorySelectionButton} from "../components/CategorySelection"
+
+const CategorySelectionView = ({ categories, onChange }) => {
+    const [selectedCategories, setCategories] = useState([])
 
     return (
         <Card>
@@ -19,28 +22,31 @@ const CategorySelection = ({ categories, changeCallback }) => {
                         <h6 className="my-2">Choose the categories to practice</h6>
                         <p className="text-muted">Select multiple categories to practice or choose just one by clicking <FontAwesomeIcon icon={faSignLanguage} />!</p>
                     </Nav.Item>
-                    <Nav.Item className="text-right align-self-center">
-                        <Button>Practice!</Button>
+                    <Nav.Item className="text-right align-sef-center">
+                        <Link to={`/practice${selectedCategories.length > 0 ? `?category=${selectedCategories.join(",")}` : ''}`}><Button>Practice!</Button></Link>
                     </Nav.Item>
                 </Nav>
             </Card.Header>
             <Card.Body>
-                {categories.map((category, index) => {
-                    return (<div className="d-flex flex-sm-row my-2">
-                        <ToggleButton
-                            variant="info"
-                            name={category.name}
-                            className="flex-grow-1"
-                            key={index}>
-                            {titleCase(category.name)}
-                        </ToggleButton>
-                        <Button className="ml-1"><FontAwesomeIcon icon={faSignLanguage} /></Button>
-                    </div>)
-                })}
+                <CategorySelection onChange={setCategories}>
+                            {categories.map(category => (
+                                <div key={category.id} className="d-flex flex-sm-row my-2">
+                                    <CategorySelectionButton
+                                        variant="info"
+                                        name={category.name}
+                                        className="flex-grow-1">
+                                        {titleCase(category.name)}
+                                    </CategorySelectionButton>
+                                    <Link to={`/practice?category=${category.name}`}>
+                                        <Button className="ml-1"><FontAwesomeIcon icon={faSignLanguage} /></Button>
+                                    </Link>
+                                </div>
+                            ))}
+                </CategorySelection>
             </Card.Body>
         </Card>
     )
 
 }
 
-export default CategorySelection;
+export default CategorySelectionView;

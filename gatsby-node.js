@@ -71,7 +71,6 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     const categories = groupByCategory(signData);
 
     Object.keys(categories).forEach(category => {
-        console.log(categories[category])
         const node = {
             name: category,
             signs: categories[category].map(s => makeSignNode(s, {createNodeId, createContentDigest})),
@@ -83,9 +82,22 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
         };
 
         actions.createNode(node);
-
     })
 
+    const weeks = groupByWeek(signData);
+    Object.keys(weeks).forEach(week => {
+        const node = {
+            name: week,
+            signs: weeks[week].map(s => makeSignNode(s, {createNodeId, createContentDigest})),
+            id: createNodeId(`Week-${week}`),
+            internal: {
+                type: "Week",
+                contentDigest: createContentDigest(week)
+            }
+        };
+
+        actions.createNode(node);
+    })
 }
 
 function getData() {
