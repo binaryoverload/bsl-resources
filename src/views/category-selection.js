@@ -9,7 +9,7 @@ import ToggleButton from "../components/toggle-button"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignLanguage } from '@fortawesome/free-solid-svg-icons'
 
-const CategorySelection = ({ categories }) => {
+const CategorySelection = ({ categories, changeCallback }) => {
 
     return (
         <Card>
@@ -29,7 +29,7 @@ const CategorySelection = ({ categories }) => {
                     return (<div className="d-flex flex-sm-row my-2">
                         <ToggleButton
                             variant="info"
-                            value={category.FontAwesomeIcon}
+                            name={category.name}
                             className="flex-grow-1"
                             key={index}>
                             {titleCase(category.name)}

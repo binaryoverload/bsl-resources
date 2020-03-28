@@ -1,20 +1,25 @@
-import React, { useState } from "react"
+import React, { useContext } from "react"
 import PropTypes from "prop-types"
 
 import "./toggle-button.css"
 
 import { ToggleButton as BootstrapToggle } from "react-bootstrap"
 
-const ToggleButton = ({ variant, value, children, name, className }) => {
-    const [checked, setChecked] = useState(false)
+import { CategorySelectionContext } from "./contexts"
 
+const ToggleButton = ({ variant, value, children, name, className }) => {
+    const [state, dispatch] = useContext(CategorySelectionContext)
     return (
         <BootstrapToggle
             type="checkbox"
             value={value}
-            checked={checked}
+            checked={state.selectedCategories.includes(name)}
             onChange={() => {
-                setChecked(!checked)
+                // setChecked(!checked)
+                dispatch({
+                    type: "TOGGLE_CATEGORY",
+                    category: name
+                })
             }}
             name={name}
             className={`toggle-button m-0 ${className}`}
