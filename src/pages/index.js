@@ -2,19 +2,30 @@ import React from "react"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import { Row, Col, Button } from "react-bootstrap"
+import { Row, Col, Button, Card } from "react-bootstrap"
 
 const IndexPage = () => (
   <>
     <SEO title="Home" />
     <Layout>
       <Row>
-        <Col>
-          <h1>BSL Practice</h1>
+        <Col lg={6}>
+          <Card border="primary">
+            <Card.Body>
+              <Card.Title>Sign practice</Card.Title>
+              <Card.Text>
+                Practice sign using the words from the sessions. Each sign comes with a hint to help you remember it as well as a video.
+                <br /><br />
+                Signs are grouped per category and per-week to help you practice specific topics or signs from a specific session.
+              </Card.Text>
+              <div className="d-flex justify-content-around">
+                <Button href="/category">Practice by category</Button>{' '}
+                <Button href="/week">Practice by Week</Button>
+              </div>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
-      <Button href="/category">Practice by category</Button>{' '}
-      <Button href="/week">Practice by Week</Button>
     </Layout>
   </>
 )
