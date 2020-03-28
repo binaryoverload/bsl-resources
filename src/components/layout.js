@@ -14,7 +14,6 @@ import { Container, Navbar } from "react-bootstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignLanguage } from '@fortawesome/free-solid-svg-icons'
 
-import "./layout.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = ({ children }) => {
@@ -23,6 +22,7 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          author
         }
       }
     }
@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
 
     <footer className="my-4">
       <Container className="border-top pt-4">
-      © {new Date().getFullYear()}
+      &copy; {new Date().getFullYear()}. {data.site.siteMetadata.author} 
       </Container>
     </footer>
     </>

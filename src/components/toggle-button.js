@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import "./toggle_button.css"
+import "./toggle-button.css"
 
 import { ToggleButton as BootstrapToggle } from "react-bootstrap"
 
