@@ -69,12 +69,11 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     });
 
     const categories = groupByCategory(signData);
-    console.log(categories);
 
     Object.keys(categories).forEach(category => {
         console.log(categories[category])
         const node = {
-            category,
+            name: category,
             signs: categories[category].map(s => makeSignNode(s, {createNodeId, createContentDigest})),
             id: createNodeId(`Category-${category}`),
             internal: {
