@@ -2,15 +2,16 @@ import React, { useMemo, useState } from "react"
 import Layout from "../components/layout"
 
 import { Row, Col, Card, Button, Collapse, OverlayTrigger, Popover, Nav } from "react-bootstrap"
-import { Empty } from "antd"
+import { Empty, Result } from "antd"
 import "antd/es/empty/style/index.css"
+import "antd/es/result/style/index.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { titleCase } from "../utils/title-case"
 
 function useQuerySigns(data, location) {
-    let params = new URLSearchParams(location);
+    let params = new URLSearchParams(location.search.slice(1));
     return useMemo(() => {
         if (params.has("category") && params.get("category")) {
             const categories = params.get("category").split(",")
@@ -78,23 +79,46 @@ const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => (
     </>
 )
 
+const SignContent = ({ sign, videoOpen, setVideoOpen }) => {
+    if (sign) {
+        return (
+            <>
+                <div className="h4 class-title">{titleCase(sign.sign)} <HintOverlay hint={sign.hint} /></div>
+                <VideoCollapse videoOpen={videoOpen} setVideoOpen={setVideoOpen} video_url={sign.video_url} />
+            </>
+        )
+    } else {
+        return <Empty description="No sign is available! This is most likely an error 😥"/>
+    }
+}
+
 const PracticePage = ({ data, location }) => {
 
     let signs = useQuerySigns(data, location)
 
     const [sign, setSign] = useState(signs[0])
     const randomSign = () => {
-        const filteredSigns = signs.filter(s => s.id !== sign?.id);
+        const filteredSigns = signs.filter(s => signs.length == 1 || s.id !== sign?.id);
         return filteredSigns[Math.floor(Math.random() * filteredSigns.length)]
     }
     const [videoOpen, setVideoOpen] = useState(false)
+
+    if (signs.length == 0) {
+        return (
+            <>
+                <Layout>
+                    <Result status="404" title="Could not find any signs..."/>
+                </Layout>
+            </>
+        )
+    }
 
     return (
         <>
             <Layout>
                 <Row className="justify-content-center">
                     <Col lg={6}>
-                        <Card className="text-center">
+                        <Card className="text-center" border={sign ? "" : "danger"}>
                             <Card.Header>
                                 <Nav className="flex-column flex-sm-row px-2">
                                     <Nav.Item className="mr-auto align-self-center w-75 text-left">
@@ -107,8 +131,7 @@ const PracticePage = ({ data, location }) => {
                                 </Nav>
                             </Card.Header>
                             <Card.Body>
-                                <div className="h4 class-title">{titleCase(sign.sign)} <HintOverlay hint={sign.hint} /></div>
-                                <VideoCollapse videoOpen={videoOpen} setVideoOpen={setVideoOpen} video_url={sign.video_url}/>
+                                <SignContent sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen}/>
                             </Card.Body>
                         </Card>
                     </Col>
