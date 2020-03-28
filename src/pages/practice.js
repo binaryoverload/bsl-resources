@@ -98,12 +98,12 @@ const PracticePage = ({ data, location }) => {
 
     const [sign, setSign] = useState(signs[0])
     const randomSign = () => {
-        const filteredSigns = signs.filter(s => signs.length == 1 || s.id !== sign?.id);
+        const filteredSigns = signs.filter(s => signs.length === 1 || s.id !== sign?.id);
         return filteredSigns[Math.floor(Math.random() * filteredSigns.length)]
     }
     const [videoOpen, setVideoOpen] = useState(false)
 
-    if (signs.length == 0) {
+    if (signs.length === 0) {
         return (
             <>
                 <Layout>
