@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `BSL Resources`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@binaryoverload`,
+    author: `William Oldham`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
