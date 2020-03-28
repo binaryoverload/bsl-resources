@@ -126,7 +126,10 @@ const PracticePage = ({ data, location }) => {
                                         <p className="text-muted"></p>
                                     </Nav.Item>
                                     <Nav.Item className="text-right align-self-center">
-                                        <Button onClick={() => setSign(randomSign())}>New sign <FontAwesomeIcon icon={faSync} /></Button>
+                                        <Button onClick={() => {
+                                            setSign(randomSign())
+                                            setVideoOpen(false)
+                                        }}>New sign <FontAwesomeIcon icon={faSync} /></Button>
                                     </Nav.Item>
                                 </Nav>
                             </Card.Header>

@@ -7,17 +7,17 @@ import "../components/toggle-button.css"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Row, Col } from "react-bootstrap"
-import CategorySelection from "../views/category-selection-view"
+import WeekSelection from "../views/week-selection-view"
 
-const CategoryPage = ({ data }) => {
+const WeekPage = ({ data }) => {
 
     return (
         <>
-            <SEO title="Practice by Category" />
+            <SEO title="Practice by Week" />
             <Layout>
                 <Row className="justify-content-center">
                     <Col lg={6}>
-                            <CategorySelection categories={data.allCategory.nodes}/>
+                            <WeekSelection categories={data.allWeek.nodes}/>
                     </Col>
                 </Row>
             </Layout>
@@ -26,8 +26,8 @@ const CategoryPage = ({ data }) => {
 }
 
 export const query = graphql`
-    query Categories {
-        allCategory {
+    query Weeks {
+        allWeek {
             nodes {
                 name
                 signs {
@@ -40,4 +40,4 @@ export const query = graphql`
     }
 `
 
-export default CategoryPage
+export default WeekPage
