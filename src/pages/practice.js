@@ -82,11 +82,11 @@ const PracticePage = ({ data, location }) => {
 
     let signs = useQuerySigns(data, location)
 
+    const [sign, setSign] = useState(signs[0])
     const randomSign = () => {
         const filteredSigns = signs.filter(s => s.id !== sign?.id);
         return filteredSigns[Math.floor(Math.random() * filteredSigns.length)]
     }
-    const [sign, setSign] = useState(randomSign())
     const [videoOpen, setVideoOpen] = useState(false)
 
     return (
