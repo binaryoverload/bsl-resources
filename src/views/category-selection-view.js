@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignLanguage } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'gatsby'
 
-import { CategorySelection, CategorySelectionButton} from "../components/CategorySelection"
+import { CategorySelection, CategorySelectionButton } from "../components/CategorySelection"
 
 const CategorySelectionView = ({ categories, onChange }) => {
     const [selectedCategories, setCategories] = useState([])
@@ -29,19 +29,19 @@ const CategorySelectionView = ({ categories, onChange }) => {
             </Card.Header>
             <Card.Body>
                 <CategorySelection onChange={setCategories}>
-                            {categories.map(category => (
-                                <div key={category.id} className="d-flex flex-sm-row my-2">
-                                    <CategorySelectionButton
-                                        variant="info"
-                                        name={category.name}
-                                        className="flex-grow-1">
-                                        {titleCase(category.name)}
-                                    </CategorySelectionButton>
-                                    <Link to={`/practice?category=${category.name}`}>
-                                        <Button className="ml-1"><FontAwesomeIcon icon={faSignLanguage} /></Button>
-                                    </Link>
-                                </div>
-                            ))}
+                    {categories.map(category => (
+                        <div key={category.id} className="d-flex flex-sm-row my-2">
+                            <CategorySelectionButton
+                                variant="info"
+                                name={category.name}
+                                className="flex-grow-1">
+                                {titleCase(category.name)}
+                            </CategorySelectionButton>
+                            <Link to={`/practice?category=${category.name}`}>
+                                <Button className="ml-1"><span className="sr-only">Practice {category.name}</span><FontAwesomeIcon icon={faSignLanguage} /></Button>
+                            </Link>
+                        </div>
+                    ))}
                 </CategorySelection>
             </Card.Body>
         </Card>

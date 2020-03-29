@@ -38,7 +38,7 @@ const WeekSelectionView = ({ categories, onChange }) => {
                                         Week {titleCase(week.name)}
                                     </WeekSelectionButton>
                                     <Link to={`/practice?week=${week.name}`}>
-                                        <Button className="ml-1"><FontAwesomeIcon icon={faSignLanguage} /></Button>
+                                        <Button className="ml-1"><span className="sr-only">Practice {week.name}</span><FontAwesomeIcon icon={faSignLanguage} /></Button>
                                     </Link>
                                 </div>
                             ))}
