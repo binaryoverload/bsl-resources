@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react"
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
 import { Row, Col, Card, Button, Collapse, OverlayTrigger, Popover, Nav } from "react-bootstrap"
 import { Empty, Result } from "antd"
@@ -27,6 +28,28 @@ function useQuerySigns(data, location) {
         }
         return data.allCategory.nodes.flatMap(category => category.signs)
     }, [params, data])
+}
+
+function getWeeksOrCategories( data, location ) {
+    let params = new URLSearchParams(location.search.slice(1));
+
+    if (params.has("category") && params.get("category")) {
+        const categories = params.get("category").split(",")
+        return {
+            categories: data.allCategory.nodes
+                            .filter(category => categories.includes(category.name))
+                            .map(category => category.name)
+        }
+    }
+    if (params.has("week") && params.get("week")) {
+        const weeks = params.get("week").split(",")
+        return {
+            weeks: data.allWeek.nodes
+                            .filter(week => weeks.includes(week.name))
+                            .map(week => week.name)
+        }
+    }
+    return {}
 }
 
 const Video = ({ video }) => {
@@ -94,7 +117,50 @@ const SignContent = ({ sign, videoOpen, setVideoOpen }) => {
 
 const PracticePage = ({ data, location }) => {
 
-    let signs = useQuerySigns(data, location)
+    const signs = useQuerySigns(data, location)
+
+    let grouping = getWeeksOrCategories(data, location)
+    let groupText = <strong>all of the signs</strong>
+
+    if (grouping) {
+        const { categories, weeks } = grouping
+
+        if (categories) {
+            if (categories.length > 1) {
+                groupText = (
+                    <>
+                        the categories <strong>{categories.map(titleCase).join(", ")}</strong>
+                    </>
+                )
+            } else {
+                // Since an empty array is falsy, it would be caught by the "if (categories)"
+                // therefore this can only ever be 1 in length
+                groupText = (
+                    <>
+                        the category <strong>{titleCase(categories[0])}</strong>
+                    </>
+                )
+            }
+        } else if (weeks) {
+            if (weeks.length > 1) {
+                groupText = (
+                    <>
+                        the weeks <strong>{weeks.join(", ")}</strong>
+                    </>
+                )
+            } else {
+                // Since an empty array is falsy, it would be caught by the "if (weeks)"
+                // therefore this can only ever be 1 in length
+                groupText = (
+                    <>
+                        the week <strong>{weeks[0]}</strong>
+                    </>
+                )
+            }
+        }
+
+    }
+
 
     const [sign, setSign] = useState(signs[0])
     const randomSign = () => {
@@ -115,6 +181,7 @@ const PracticePage = ({ data, location }) => {
 
     return (
         <>
+            <SEO title="Practice"/>
             <Layout>
                 <Row className="justify-content-center">
                     <Col lg={6}>
@@ -123,7 +190,7 @@ const PracticePage = ({ data, location }) => {
                                 <Nav className="flex-column flex-sm-row px-2">
                                     <Nav.Item className="mr-auto align-self-center w-75 text-left">
                                         <h6 className="my-2">Practice</h6>
-                                        <p className="text-muted"></p>
+                                        <p className="text-muted">You have selected {groupText} to practice. Click the <strong>New sign <FontAwesomeIcon icon={faSync} /></strong> button to get a random new sign from your chosen selection.</p>
                                     </Nav.Item>
                                     <Nav.Item className="text-right align-self-center">
                                         <Button onClick={() => {
@@ -133,7 +200,7 @@ const PracticePage = ({ data, location }) => {
                                     </Nav.Item>
                                 </Nav>
                             </Card.Header>
-                            <Card.Body>
+                            <Card.Body aria-live="assertive">
                                 <SignContent sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen}/>
                             </Card.Body>
                         </Card>
