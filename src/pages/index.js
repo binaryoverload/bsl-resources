@@ -19,8 +19,9 @@ const IndexPage = () => (
                 Signs are grouped per category and per-week to help you practice specific topics or signs from a specific session.
               </Card.Text>
               <div className="d-flex justify-content-around">
-                <Button href="/category">Practice by category</Button>{' '}
-                <Button href="/week">Practice by Week</Button>
+                <Button className="mr-1" href="/category">Practice by category</Button>{' '}
+                <Button className="mx-1" href="/week">Practice by Week</Button>{' '}
+                <Button className="ml-1" variant="dark" href="/practice">Practice Everything</Button>
               </div>
             </Card.Body>
           </Card>
