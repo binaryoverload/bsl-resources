@@ -9,15 +9,20 @@
 const csv = require('csv-parser')
 const fs = require('fs')
 
-const groupBy = key => array =>
+const groupBy = (key, defaultValue) => array =>
     array.reduce((objectsByKeyValue, obj) => {
-        const value = obj[key];
-        objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+        let values = obj[key];
+        if (!values || !values[0]) values = ([defaultValue] || ["unknown"])
+
+        values.forEach(value => {
+            objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+        })
+
         return objectsByKeyValue;
     }, {});
 
-const groupByCategory = groupBy('category');
-const groupByWeek = groupBy('week');
+const groupByCategory = groupBy('category', 'uncategorised');
+const groupByWeek = groupBy('week', 'undefined');
 
 exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions
@@ -39,9 +44,11 @@ exports.createPages = async ({ actions, graphql }) => {
 }
 
 function makeSignNode(sign, {createNodeId, createContentDigest}) {
+    const newSign = {...sign}
+
     const node = {
-        ...sign,
-        id: createNodeId(`Sign-${sign.sign}`),
+        ...newSign,
+        id: createNodeId(`Sign-${newSign.sign}`),
         internal: {
             type: "Sign",
             contentDigest: createContentDigest(sign)
@@ -53,6 +60,12 @@ function makeSignNode(sign, {createNodeId, createContentDigest}) {
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
     const signData = await getData();
+
+    signData.forEach(sign => {
+        sign.week = sign.week.split(",")
+        sign.category = sign.category.split(",")
+    })
+
     signData.forEach(sign => {
         const node = makeSignNode(sign, {createNodeId, createContentDigest})
         actions.createNode(node);
