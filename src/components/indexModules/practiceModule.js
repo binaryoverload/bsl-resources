@@ -3,7 +3,7 @@ import React from "react"
 import { Card, Button } from "react-bootstrap"
 
 const PracticeModule = () => (
-    <Card>
+    <Card className="my-1">
         <Card.Body>
             <Card.Title>Sign practice</Card.Title>
             <Card.Text>

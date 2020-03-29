@@ -3,7 +3,7 @@ import React from "react"
 import { Card, Button } from "react-bootstrap"
 
 const DictionaryModule = () => (
-    <Card>
+    <Card className="my-1">
         <Card.Body>
             <Card.Title>Sign dictionaries</Card.Title>
             <p>Here you can find some sign dictionaries to help you find a more obscure word!</p>
