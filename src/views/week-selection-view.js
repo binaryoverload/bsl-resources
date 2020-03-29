@@ -1,7 +1,7 @@
 
 import React, { useState } from "react"
 
-import { titleCase } from "../utils/title-case"
+import { displayFormat } from "../utils/title-case"
 
 import { Button, Card, Nav } from "react-bootstrap"
 
@@ -35,7 +35,7 @@ const WeekSelectionView = ({ categories, onChange }) => {
                                         variant="info"
                                         name={week.name}
                                         className="flex-grow-1">
-                                        Week {titleCase(week.name)}
+                                        {displayFormat(week.name)}
                                     </WeekSelectionButton>
                                     <Link to={`/practice?week=${week.name}`}>
                                         <Button className="ml-1"><span className="sr-only">Practice {week.name}</span><FontAwesomeIcon icon={faSignLanguage} /></Button>

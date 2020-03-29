@@ -1,7 +1,7 @@
 
 import React, { useState } from "react"
 
-import { titleCase } from "../utils/title-case"
+import { displayFormat } from "../utils/title-case"
 
 import { Button, Card, Nav } from "react-bootstrap"
 
@@ -35,7 +35,7 @@ const CategorySelectionView = ({ categories, onChange }) => {
                                 variant="info"
                                 name={category.name}
                                 className="flex-grow-1">
-                                {titleCase(category.name)}
+                                {displayFormat(category.name)}
                             </CategorySelectionButton>
                             <Link to={`/practice?category=${category.name}`}>
                                 <Button className="ml-1"><span className="sr-only">Practice {category.name}</span><FontAwesomeIcon icon={faSignLanguage} /></Button>

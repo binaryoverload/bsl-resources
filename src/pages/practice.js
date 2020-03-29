@@ -9,7 +9,7 @@ import "antd/es/result/style/index.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-import { titleCase } from "../utils/title-case"
+import { displayFormat } from "../utils/title-case"
 
 function useQuerySigns(data, location) {
     let params = new URLSearchParams(location.search.slice(1));
@@ -106,7 +106,7 @@ const SignContent = ({ sign, videoOpen, setVideoOpen }) => {
     if (sign) {
         return (
             <>
-                <div className="h4 class-title">{titleCase(sign.sign)} <HintOverlay hint={sign.hint} /></div>
+                <div className="h4 class-title">{displayFormat(sign.sign)} <HintOverlay hint={sign.hint} /></div>
                 <VideoCollapse videoOpen={videoOpen} setVideoOpen={setVideoOpen} video_url={sign.video_url} />
             </>
         )
@@ -129,7 +129,7 @@ const PracticePage = ({ data, location }) => {
             if (categories.length > 1) {
                 groupText = (
                     <>
-                        the categories <strong>{categories.map(titleCase).join(", ")}</strong>
+                        the categories <strong>{categories.map(displayFormat).join(", ")}</strong>
                     </>
                 )
             } else {
@@ -137,7 +137,7 @@ const PracticePage = ({ data, location }) => {
                 // therefore this can only ever be 1 in length
                 groupText = (
                     <>
-                        the category <strong>{titleCase(categories[0])}</strong>
+                        the category <strong>{displayFormat(categories[0])}</strong>
                     </>
                 )
             }
@@ -145,7 +145,7 @@ const PracticePage = ({ data, location }) => {
             if (weeks.length > 1) {
                 groupText = (
                     <>
-                        the weeks <strong>{weeks.join(", ")}</strong>
+                        the weeks <strong>{weeks.map(displayFormat).join(", ")}</strong>
                     </>
                 )
             } else {
@@ -153,7 +153,7 @@ const PracticePage = ({ data, location }) => {
                 // therefore this can only ever be 1 in length
                 groupText = (
                     <>
-                        the week <strong>{weeks[0]}</strong>
+                        the week <strong>{displayFormat(weeks[0])}</strong>
                     </>
                 )
             }
