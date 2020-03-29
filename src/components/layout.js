@@ -13,6 +13,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { Container, Navbar } from "react-bootstrap"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignLanguage } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -43,7 +44,10 @@ const Layout = ({ children }) => {
 
     <footer className="my-4">
       <Container className="border-top pt-4">
-      &copy; {new Date().getFullYear()}. {data.site.siteMetadata.author} 
+      <p>&copy; {new Date().getFullYear()}. {data.site.siteMetadata.author}</p>
+      <a href="https://github.com/binaryoverload/bsl-resources">
+        See this project on GitHub <FontAwesomeIcon className="text-dark" icon={faGithub}/>
+      </a>
       </Container>
     </footer>
     </>
