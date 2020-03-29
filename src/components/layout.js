@@ -44,9 +44,9 @@ const Layout = ({ children }) => {
 
     <footer className="my-4">
       <Container className="border-top pt-4">
-      <p>&copy; {new Date().getFullYear()}. {data.site.siteMetadata.author}</p>
+      <p>&copy; {new Date().getFullYear()} {data.site.siteMetadata.author}</p>
       <a href="https://github.com/binaryoverload/bsl-resources">
-        See this project on GitHub <FontAwesomeIcon className="text-dark" icon={faGithub}/>
+        <FontAwesomeIcon className="text-dark" icon={faGithub}/> See this project on GitHub 
       </a>
       </Container>
     </footer>
