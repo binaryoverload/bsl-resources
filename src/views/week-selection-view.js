@@ -14,6 +14,13 @@ import { WeekSelection, WeekSelectionButton} from "../components/WeekSelection"
 const WeekSelectionView = ({ categories, onChange }) => {
     const [selectedCategories, setCategories] = useState([])
 
+    const sortByWeek = (category1, category2) => {
+        if (category1.name > category2.name) return 1;
+        if (category1.name < category2.name) return -1;
+
+        return 0;
+    }
+
     return (
         <Card>
             <Card.Header>
@@ -29,7 +36,7 @@ const WeekSelectionView = ({ categories, onChange }) => {
             </Card.Header>
             <Card.Body>
                 <WeekSelection onChange={setCategories}>
-                            {categories.map(week => (
+                            {categories.sort(sortByWeek).map(week => (
                                 <div key={week.id} className="d-flex flex-sm-row my-2">
                                     <WeekSelectionButton
                                         variant="info"

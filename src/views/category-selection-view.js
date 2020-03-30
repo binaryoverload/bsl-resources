@@ -14,6 +14,13 @@ import { CategorySelection, CategorySelectionButton } from "../components/Catego
 const CategorySelectionView = ({ categories, onChange }) => {
     const [selectedCategories, setCategories] = useState([])
 
+    const sortByCategory = (category1, category2) => {
+        if (category1.name > category2.name) return 1;
+        if (category1.name < category2.name) return -1;
+
+        return 0;
+    }
+
     return (
         <Card>
             <Card.Header>
@@ -29,7 +36,7 @@ const CategorySelectionView = ({ categories, onChange }) => {
             </Card.Header>
             <Card.Body>
                 <CategorySelection onChange={setCategories}>
-                    {categories.map(category => (
+                    {categories.sort(sortByCategory).map(category => (
                         <div key={category.id} className="d-flex flex-sm-row my-2">
                             <CategorySelectionButton
                                 variant="info"
