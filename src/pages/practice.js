@@ -194,8 +194,8 @@ const PracticePage = ({ data, location }) => {
                                     </Nav.Item>
                                     <Nav.Item className="text-right align-self-center">
                                         <Button onClick={() => {
-                                            setSign(randomSign())
                                             setVideoOpen(false)
+                                            setSign(randomSign())
                                         }}>New sign <FontAwesomeIcon icon={faSync} /></Button>
                                     </Nav.Item>
                                 </Nav>
