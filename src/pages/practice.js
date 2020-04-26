@@ -214,28 +214,15 @@ const PracticePage = ({ data, location }) => {
 
 export const query = graphql`
     query Signs {
-        allWeek {
+        allSign {
             nodes {
-                name
-                signs {
-                    id
-                    hint
-                    sign
-                    video_url
-                }
+              sign
+              weeks
+              notes
+              hint
             }
         }
-        allCategory {
-            nodes {
-                name
-                signs {
-                    id
-                    hint
-                    sign
-                    video_url
-                }
-            }
-        }
+        
     }
   
 `
