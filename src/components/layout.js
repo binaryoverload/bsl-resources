@@ -17,7 +17,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -36,7 +36,7 @@ const Layout = ({ children }) => {
       </Navbar>
 
       <main>
-        <Container className="pt-5">
+        <Container className={`pt-5 ${className}`}>
           { children }
         </Container>
       </main>
