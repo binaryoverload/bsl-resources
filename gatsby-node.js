@@ -10,25 +10,6 @@ const csv = require('csv-parser')
 const fs = require('fs')
 const { Readable } = require('stream');
 
-exports.createPages = async ({ actions, graphql }) => {
-    const { createPage } = actions
-
-    const result = await graphql(`
-        query {
-            allSign {
-                nodes {
-                    sign
-                    category
-                    week
-                    video_url
-                    hint
-                }
-            }
-
-        }
-    `)
-}
-
 function makeSignNode(sign, { createNodeId, createContentDigest }) {
     const newSign = { ...sign }
 
