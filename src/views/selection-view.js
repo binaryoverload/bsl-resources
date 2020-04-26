@@ -43,7 +43,7 @@ const SelectionView = ({ grouping, onChange }) => {
                     {grouping.results.sort(sortByDisplayName).map(group => (
                         <div key={group.name} className="d-flex flex-sm-row my-2">
                             <SelectionButton
-                                variant="info"
+                                variant="outline-secondary"
                                 name={group.name}
                                 groupingKey={grouping.meta.name}
                                 className="flex-grow-1">
