@@ -6,7 +6,11 @@ import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { Row, Col, ToggleButtonGroup, ToggleButton } from "react-bootstrap"
+import { Result } from "antd"
 import SelectionView from "../views/selection-view"
+
+
+import "antd/es/result/style/index.css"
 
 if (!Array.prototype.chunk) {
   Object.defineProperty(Array.prototype, 'chunk', {
@@ -16,22 +20,40 @@ if (!Array.prototype.chunk) {
   });
 }
 
+const ToggleButtons = ({ groupings, selectedButton, setSelectedButton }) => {
+  if (groupings.length > 1) {
+    return (
+      <Row className="justify-content-center">
+        <ToggleButtonGroup name="test" value={selectedButton} onChange={setSelectedButton}>
+          {groupings.map(grouping => (
+            <ToggleButton variant="dark" key={grouping.id} value={grouping.meta.name}>{grouping.meta.display_name}</ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+      </Row>
+    )
+  } else {
+    return null
+  }
+}
+
 const SelectionPage = ({ data }) => {
 
   const [selectedButton, setSelectedButton] = useState(data.allGrouping.nodes[0]?.meta.name);
   const grouping = data.allGrouping.nodes.find(grouping => selectedButton === grouping.meta.name);
 
+  if (data.allGrouping.nodes.length === 0) {
+    return (
+      <Layout>
+        <Result status="404" title="Could not find any groupings..." />
+      </Layout>
+    )
+  }
+
   return (
     <>
       <SEO title="Practice by Category" />
       <Layout>
-        <Row className="justify-content-center">
-          <ToggleButtonGroup name="test" value={selectedButton} onChange={setSelectedButton}>
-            {data.allGrouping.nodes.map(grouping => (
-              <ToggleButton variant="dark" key={grouping.id} value={grouping.meta.name}>{grouping.meta.display_name}</ToggleButton>
-            ))}
-          </ToggleButtonGroup>
-        </Row>
+        <ToggleButtons groupings={data.allGrouping.nodes} selectedButton={selectedButton} setSelectedButton={setSelectedButton}/>
         <Row className="justify-content-center">
           <Col lg={6}>
             <SelectionView grouping={grouping} />
