@@ -67,6 +67,20 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
                     sign[grouping] = [...(sign[grouping] || []), row.name]
                 }
             })
+
+            if (!sign[grouping]) {
+                sign[grouping] = [groupingData[grouping].meta.unknown]
+                let unknownGroup = groupingData[grouping].results.find(result => result.name === groupingData[grouping].meta.unknown);
+                if (!unknownGroup) {
+                    groupingData[grouping].results.push({
+                        display_name: groupingData[grouping].meta.unknown_display,
+                        name: groupingData[grouping].meta.unknown,
+                        elements: [sign.sign]
+                    })
+                } else {
+                    unknownGroup.elements.push(sign.sign)
+                }
+            }
         }
 
         const node = makeSignNode(sign, { createNodeId, createContentDigest })
