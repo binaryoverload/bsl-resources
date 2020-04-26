@@ -1,8 +1,9 @@
 ---
-name:weeks
-display_name:Weeks
-unknown:Ungrouped
-all:All Weeks
+name:               weeks
+display_name:       Weeks
+unknown:            ungrouped
+unknown_display:    Ungrouped
+all:                All Weeks
 ---
 name,display_name,elements
 week_2,Week 2,which;what;where;who;why;when;how
