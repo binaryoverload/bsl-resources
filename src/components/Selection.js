@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, useEffect } from 'react'
 import { ToggleButton as BootstrapToggle } from "react-bootstrap"
 
-export const WeekSelectionContext = React.createContext()
+import "./toggle-button.css"
 
 const initialState = {
     selectedCategories: []
@@ -9,7 +9,7 @@ const initialState = {
 
 function reducer(state, action) {
     switch(action.type) {
-        case "TOGGLE_WEEK":
+        case "TOGGLE":
             if (state.selectedCategories.includes(action.week)) {
                 const selectedCategories = [...state.selectedCategories]
                 selectedCategories.splice(selectedCategories.indexOf(action.week), 1)
@@ -21,7 +21,7 @@ function reducer(state, action) {
     }
 } 
 
-export const WeekSelection = ({onChange, children}) => {
+export const Selection = ({onChange, children, context}) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
@@ -29,14 +29,14 @@ export const WeekSelection = ({onChange, children}) => {
     }, [state.selectedCategories, onChange])
 
     return (
-        <WeekSelectionContext.Provider value={[state, dispatch]}>
+        <context.Provider value={[state, dispatch]}>
             {children}
-        </WeekSelectionContext.Provider>
+        </context.Provider>
     )
 }
 
-export const WeekSelectionButton = ({ variant, value, children, name, className }) => {
-    const [state, dispatch] = useContext(WeekSelectionContext)
+export const SelectionButton = ({ variant, value, children, name, className, context }) => {
+    const [state, dispatch] = useContext(context)
 
     return (
         <BootstrapToggle
@@ -45,7 +45,7 @@ export const WeekSelectionButton = ({ variant, value, children, name, className 
             checked={state.selectedCategories.includes(name)}
             onChange={() => {
                 dispatch({
-                    type: "TOGGLE_WEEK",
+                    type: "TOGGLE",
                     week: name
                 })
             }}
