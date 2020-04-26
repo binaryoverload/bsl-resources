@@ -35,12 +35,13 @@ const SelectionView = ({ grouping, onChange }) => {
                 </Nav>
             </Card.Header>
             <Card.Body>
-                <Selection onChange={setSelectedGroups}>
+                <Selection onChange={setSelectedGroups} groupingKey={grouping.meta.name}>
                     {grouping.results.sort(sortByName).map(group => (
                         <div key={group.id} className="d-flex flex-sm-row my-2">
                             <SelectionButton
                                 variant="info"
                                 name={group.name}
+                                groupingKey={grouping.meta.name}
                                 className="flex-grow-1">
                                 {group.display_name}
                             </SelectionButton>

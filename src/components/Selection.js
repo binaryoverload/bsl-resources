@@ -4,29 +4,32 @@ import { ToggleButton as BootstrapToggle } from "react-bootstrap"
 import "./toggle-button.css"
 
 const initialState = {
-    selectedCategories: []
+    selected: []
 }
+
+const contexts = {}
 
 function reducer(state, action) {
     switch(action.type) {
         case "TOGGLE":
-            if (state.selectedCategories.includes(action.week)) {
-                const selectedCategories = [...state.selectedCategories]
-                selectedCategories.splice(selectedCategories.indexOf(action.week), 1)
-                return {...state, selectedCategories}
+            if (state.selected.includes(action.element)) {
+                const selected = [...state.selected]
+                selected.splice(selected.indexOf(action.element), 1)
+                return {...state, selected}
             }
-            return {...state, selectedCategories: [...state.selectedCategories, action.week]}
+            return {...state, selected: [...state.selected, action.element]}
         default:
             return state
     }
 } 
 
-export const Selection = ({onChange, children, context}) => {
+export const Selection = ({onChange, children, groupingKey}) => {
+    const context = contexts[groupingKey] || (contexts[groupingKey] = React.createContext())
     const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        onChange(state.selectedCategories)
-    }, [state.selectedCategories, onChange])
+        onChange(state.selected)
+    }, [state.selected, onChange])
 
     return (
         <context.Provider value={[state, dispatch]}>
@@ -35,18 +38,18 @@ export const Selection = ({onChange, children, context}) => {
     )
 }
 
-export const SelectionButton = ({ variant, value, children, name, className, context }) => {
-    const [state, dispatch] = useContext(context)
+export const SelectionButton = ({ variant, value, children, name, className, groupingKey }) => {
+    const [state, dispatch] = useContext(contexts[groupingKey] || (contexts[groupingKey] = React.createContext()))
 
     return (
         <BootstrapToggle
             type="checkbox"
             value={value}
-            checked={state.selectedCategories.includes(name)}
+            checked={state.selected.includes(name)}
             onChange={() => {
                 dispatch({
                     type: "TOGGLE",
-                    week: name
+                    element: name
                 })
             }}
             name={name}
