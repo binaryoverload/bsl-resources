@@ -10,21 +10,6 @@ const csv = require('csv-parser')
 const fs = require('fs')
 const { Readable } = require('stream');
 
-const groupBy = (key, defaultValue) => array =>
-    array.reduce((objectsByKeyValue, obj) => {
-        let values = obj[key];
-        if (!values || !values[0]) values = ([defaultValue] || ["unknown"])
-
-        values.forEach(value => {
-            objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
-        })
-
-        return objectsByKeyValue;
-    }, {});
-
-const groupByCategory = groupBy('category', 'uncategorised');
-const groupByWeek = groupBy('week', 'undefined');
-
 exports.createPages = async ({ actions, graphql }) => {
     const { createPage } = actions
 
@@ -69,54 +54,39 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
         if (!file.endsWith(".csv")) continue
         const fileData = await getData(fileBase + "groupings/" + file)
         if (fileData.meta) {
-            groupingData[fileData.meta.name || file.substring(0, file.lastIndexOf("."))] = fileData.results
+            groupingData[fileData.meta.name || file.substring(0, file.lastIndexOf("."))] = fileData
         } else {
-            groupingData[file.substring(0, file.lastIndexOf("."))] = fileData.results
+            groupingData[file.substring(0, file.lastIndexOf("."))] = fileData
         }
     }
 
-    console.log(JSON.stringify(signData, null, 2))
-    console.log(JSON.stringify(groupingData, null, 2))
+    signData.results.forEach(sign => {
+        for (grouping in groupingData) {
+            groupingData[grouping].results.forEach(row => {
+                if (row.elements.includes(sign.sign)) {
+                    sign[grouping] = [...(sign[grouping] || []), row.name]
+                }
+            })
+        }
 
-    signData.forEach(sign => {
-        sign.week = sign.week.split(",")
-        sign.category = sign.category.split(",")
-    })
-
-    signData.forEach(sign => {
         const node = makeSignNode(sign, { createNodeId, createContentDigest })
         actions.createNode(node);
     });
 
-    const categories = groupByCategory(signData);
+    console.log(JSON.stringify(groupingData, null, 2))
 
-    Object.keys(categories).forEach(category => {
+    Object.keys(groupingData).forEach(groupingName => {
         const node = {
-            name: category,
-            signs: categories[category].map(s => makeSignNode(s, { createNodeId, createContentDigest })),
-            id: createNodeId(`Category-${category}`),
+            ...groupingData[groupingName],
+            id: createNodeId(`Grouping-${groupingName}`),
             internal: {
-                type: "Category",
-                contentDigest: createContentDigest(category)
+                type: "Grouping",
+                contentDigest: createContentDigest(groupingName)
             }
         };
 
         actions.createNode(node);
-    })
-
-    const weeks = groupByWeek(signData);
-    Object.keys(weeks).forEach(week => {
-        const node = {
-            name: week,
-            signs: weeks[week].map(s => makeSignNode(s, { createNodeId, createContentDigest })),
-            id: createNodeId(`Week-${week}`),
-            internal: {
-                type: "Week",
-                contentDigest: createContentDigest(week)
-            }
-        };
-
-        actions.createNode(node);
+        
     })
 }
 
@@ -153,7 +123,14 @@ function getData(fileName) {
         let result = { meta, results: [] }
 
         Readable.from(file.split("\n"))
-            .pipe(csv())
+            .pipe(csv({
+                mapValues: ({header, value}) => {
+                    if (header === "elements") {
+                        return value.split(";")
+                    }
+                    return value
+                }
+            }))
             .on('data', (data) => result.results.push(data))
             .on('end', () => {
                 resolve(result)
