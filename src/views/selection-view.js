@@ -9,6 +9,13 @@ import { Link } from 'gatsby'
 
 import { Selection, SelectionButton } from "../components/Selection"
 
+const sortByDisplayName = (a, b) => {
+    if (a.display_name > b.display_name) return 1;
+    if (a.display_name < b.display_name) return -1;
+
+    return 0;
+}
+
 const SelectionView = ({ grouping, onChange }) => {
     const [selectedGroups, setSelectedGroups] = useState([])
     const [filter, setFilter] = useState("")
@@ -17,13 +24,6 @@ const SelectionView = ({ grouping, onChange }) => {
     useEffect(() => {
         setData(grouping.data.sort(sortByDisplayName).filter((grouping) => !filter || grouping.display_name.toLowerCase().includes(filter.toLowerCase())))
     }, [filter, grouping.data])
-
-    const sortByDisplayName = (a, b) => {
-        if (a.display_name > b.display_name) return 1;
-        if (a.display_name < b.display_name) return -1;
-
-        return 0;
-    }
 
     let practiceButtonText = selectedGroups.length === 0 ?
                                 grouping.all :

@@ -14,19 +14,15 @@ import { displayFormat } from "../utils/title-case"
 function useQuerySigns(data, location) {
     let params = new URLSearchParams(location.search.slice(1));
     return useMemo(() => {
-        if (params.has("category") && params.get("category")) {
-            const categories = params.get("category").split(",")
-            return data.allCategory.nodes
-                .filter(category => categories.includes(category.name))
-                .flatMap(category => category.signs)
+        for (let grouping of data.allGrouping.nodes) {
+            if (params.has(grouping.name) && params.get(grouping.name)) {
+                const groupings = params.get(grouping.name).split(",")
+                return grouping.data
+                    .filter(grouping => groupings.includes(grouping.name))
+                    .flatMap(category => category.signs)
+            }
         }
-        if (params.has("week") && params.get("week")) {
-            const weeks = params.get("week").split(",")
-            return data.allWeek.nodes
-                .filter(week => weeks.includes(week.name))
-                .flatMap(week => week.signs)
-        }
-        return data.allCategory.nodes.flatMap(category => category.signs)
+        return data.allGrouping.nodes.flatMap(category => category.data.flatMap(data => data.signs))
     }, [params, data])
 }
 
@@ -102,11 +98,13 @@ const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => (
     </>
 )
 
-const SignContent = ({ sign, videoOpen, setVideoOpen }) => {
+const SignContent = ({ data, sign, videoOpen, setVideoOpen }) => {
     if (sign) {
         return (
             <>
-                <div className="h4 class-title">{displayFormat(sign.sign)} <HintOverlay hint={sign.hint} /></div>
+                {/* <p>{data.allGrouping.nodes[0].data.filter(data => data.signs.includes(sign.sign)).map(data => data.name).join(", ")}</p> */}
+                <div className="h4 class-title">{sign.display_name} <HintOverlay hint={sign.hint} /></div>
+                <p className="text-muted">{sign.notes}</p>
                 <VideoCollapse videoOpen={videoOpen} setVideoOpen={setVideoOpen} video_url={sign.video_url} />
             </>
         )
@@ -117,7 +115,7 @@ const SignContent = ({ sign, videoOpen, setVideoOpen }) => {
 
 const PracticePage = ({ data, location }) => {
 
-    const signs = useQuerySigns(data, location)
+    const signs = useQuerySigns(data, location).map(signName => data.allSign.nodes.find(sign => sign.sign === signName))
 
     let grouping = getWeeksOrCategories(data, location)
     let groupText = <strong>all of the signs</strong>
@@ -182,7 +180,7 @@ const PracticePage = ({ data, location }) => {
     return (
         <>
             <SEO title="Practice"/>
-            <Layout>
+            <Layout className="pt-3">
                 <Row className="justify-content-center">
                     <Col lg={6}>
                         <Card className="text-center" border={sign ? "" : "danger"}>
@@ -201,7 +199,7 @@ const PracticePage = ({ data, location }) => {
                                 </Nav>
                             </Card.Header>
                             <Card.Body aria-live="assertive">
-                                <SignContent sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen}/>
+                                <SignContent data={data} sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen}/>
                             </Card.Body>
                         </Card>
                     </Col>
@@ -216,12 +214,22 @@ export const query = graphql`
     query Signs {
         allSign {
             nodes {
+              id
               sign
               notes
               hint
+              display_name
             }
         }
-        
+        allGrouping {
+            nodes {
+              data {
+                name
+                signs
+              }
+              name
+            }
+        } 
     }
   
 `

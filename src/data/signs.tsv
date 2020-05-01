@@ -1,646 +1,600 @@
-sign	video_url	hint	notes	
-which	https://media.signbsl.com/videos/bsl/corpusngt/mp4/vlc-record-2015-04-24-20h23m53s-BSL_CN_lex_b.mpg-.mp4			Question Forms
-what	https://media.signbsl.com/videos/bsl/nf/mp4/What.mp4			Conversational, Question Forms
-where	https://media.signbsl.com/videos/bsl/signstation/where.mp4			Question Forms
-who	https://media.signbsl.com/videos/bsl/signstation/WHO-3.mp4			Question Forms
-why	https://media.signbsl.com/videos/bsl/signstation/why.mp4			Question Forms
-when	https://media.signbsl.com/videos/bsl/signmonkey/mp4/when.mp4			Question Forms
-how	https://media.signbsl.com/videos/bsl/signstation/how.mp4			Question Forms
-one	https://media.signbsl.com/videos/bsl/signstation/one.mp4			Numbers
-two	https://media.signbsl.com/videos/bsl/signstation/two.mp4			Numbers
-three	https://media.signbsl.com/videos/bsl/signstation/three.mp4			Numbers
-four	https://media.signbsl.com/videos/bsl/signstation/four.mp4			Numbers
-five	https://media.signbsl.com/videos/bsl/signstation/five.mp4			Numbers
-six	https://media.signbsl.com/videos/bsl/signstation/six.mp4			Numbers
-seven	https://media.signbsl.com/videos/bsl/signstation/seven.mp4			Numbers
-eight	https://media.signbsl.com/videos/bsl/signstation/eight.mp4			Numbers
-nine	https://media.signbsl.com/videos/bsl/signstation/nine.mp4			Numbers
-ten				Numbers
-twenty	https://media.signbsl.com/videos/bsl/signstation/20.mp4			Numbers
-twenty_five	https://media.signbsl.com/videos/bsl/signstation/25.mp4			Numbers
-thirty	https://media.signbsl.com/videos/bsl/signstation/30.mp4			Numbers
-fourty	https://media.signbsl.com/videos/bsl/signstation/40.mp4			Numbers
-fifty	https://media.signbsl.com/videos/bsl/signstation/50.mp4			Numbers
-sixty	https://media.signbsl.com/videos/bsl/signstation/60.mp4			Numbers
-seventy	https://media.signbsl.com/videos/bsl/signstation/70.mp4			Numbers
-eighty	https://media.signbsl.com/videos/bsl/signstation/80.mp4			Numbers
-ninty	https://media.signbsl.com/videos/bsl/signstation/90.mp4			Numbers
-one_hundred	https://media.signbsl.com/videos/bsl/corpusngt/mp4/vlc-record-2015-04-16-16h37m13s-BSL_CN_lex_b.mpg-.mp4			Numbers
-one_thousand				Numbers
-one_million	https://media.signbsl.com/videos/bsl/corpusngt/mp4/vlc-record-2015-04-16-16h37m28s-BSL_CN_lex_b.mpg-.mp4			Numbers
-nice_to_meet_you				Conversational, Greetings
-how_are_you				Conversational
-i_feel_bad				Conversational
-i_feel_good				Conversational
-arrive				Conversational
-leave				Conversational
-quickly				Conversational
-wait				Conversational
-hello				Conversational, Greetings
-goodbye				Conversational, Greetings
-good_morning				Conversational, Greetings
-good_afternoon				Conversational, Greetings
-good_evening				Conversational, Greetings
-good_night				Conversational, Greetings
-deaf				Conversational
-hearing				Conversational, Deaf Terminology, Disability Awareness
-hard_of_hearing				Conversational, Deaf Terminology, Disability Awareness
-deafened				Conversational, Deaf Terminology, Disability Awareness
-hearing_aids				Conversational, Deaf Terminology, Disability Awareness
-lip_read				Conversational, Deaf Terminology, Disability Awareness
-can_you_hear				Conversational, Deaf Terminology, Disability Awareness
-can_you_sign				Conversational, Deaf Terminology, Disability Awareness
-do_you_need_to_lip_read				Conversational, Deaf Terminology, Disability Awareness
-sign_language				Conversational, Deaf Terminology, Disability Awareness
-name				Conversational
-what				Conversational, Question Forms
-sorry				Conversational
-please				Conversational
-thank_you				Conversational
-british_sign_language				Conversational, Deaf Terminology, Disability Awareness
-i_am_learning				Conversational
-i_understand				Conversational
-i_dont_understand				Conversational
-again				Conversational
-slowly				Conversational
+sign	display_name	video_url	hint	notes
+which		https://media.signbsl.com/videos/bsl/corpusngt/mp4/vlc-record-2015-04-24-20h23m53s-BSL_CN_lex_b.mpg-.mp4		
+what		https://media.signbsl.com/videos/bsl/nf/mp4/What.mp4		
+where		https://media.signbsl.com/videos/bsl/signstation/where.mp4		
+who		https://media.signbsl.com/videos/bsl/signstation/WHO-3.mp4		
+why		https://media.signbsl.com/videos/bsl/signstation/why.mp4		
+when		https://media.signbsl.com/videos/bsl/signmonkey/mp4/when.mp4		
+how		https://media.signbsl.com/videos/bsl/signstation/how.mp4		
+one		https://media.signbsl.com/videos/bsl/signstation/one.mp4		
+two		https://media.signbsl.com/videos/bsl/signstation/two.mp4		
+three		https://media.signbsl.com/videos/bsl/signstation/three.mp4		
+four		https://media.signbsl.com/videos/bsl/signstation/four.mp4		
+five		https://media.signbsl.com/videos/bsl/signstation/five.mp4		
+six		https://media.signbsl.com/videos/bsl/signstation/six.mp4		
+seven		https://media.signbsl.com/videos/bsl/signstation/seven.mp4		
+eight		https://media.signbsl.com/videos/bsl/signstation/eight.mp4		
+nine		https://media.signbsl.com/videos/bsl/signstation/nine.mp4		
+ten				
+twenty		https://media.signbsl.com/videos/bsl/signstation/20.mp4		
+twenty_five		https://media.signbsl.com/videos/bsl/signstation/25.mp4		
+thirty		https://media.signbsl.com/videos/bsl/signstation/30.mp4		
+fourty		https://media.signbsl.com/videos/bsl/signstation/40.mp4		
+fifty		https://media.signbsl.com/videos/bsl/signstation/50.mp4		
+sixty		https://media.signbsl.com/videos/bsl/signstation/60.mp4		
+seventy		https://media.signbsl.com/videos/bsl/signstation/70.mp4		
+eighty		https://media.signbsl.com/videos/bsl/signstation/80.mp4		
+ninty		https://media.signbsl.com/videos/bsl/signstation/90.mp4		
+one_hundred		https://media.signbsl.com/videos/bsl/corpusngt/mp4/vlc-record-2015-04-16-16h37m13s-BSL_CN_lex_b.mpg-.mp4		
+one_thousand				
+one_million		https://media.signbsl.com/videos/bsl/corpusngt/mp4/vlc-record-2015-04-16-16h37m28s-BSL_CN_lex_b.mpg-.mp4		
+nice_to_meet_you				
+how_are_you				
+i_feel_bad				
+i_feel_good				
+arrive				
+leave				
+quickly				
+wait				
+hello				
+goodbye				
+good_morning				
+good_afternoon				
+good_evening				
+good_night				
+deaf				
+hearing				
+hard_of_hearing				
+deafened				
+hearing_aids				
+lip_read				
+can_you_hear				
+can_you_sign				
+do_you_need_to_lip_read				
+sign_language				
+name				
+sorry				
+please				
+thank_you				
+british_sign_language				
+i_am_learning				
+i_understand				
+i_dont_understand				
+again				
+slowly				
 				
-feelings				Feelings
-happy				Feelings
-excited				Feelings
-surprised				Feelings
-proud				Feelings
-angry				Feelings
-grumpy				Feelings
-confused				Feelings
-tired				Feelings
-sad				Feelings
-depressed				Feelings
-lonely				Feelings
-nervous				Feelings
-shy				Feelings
-hungry				Feelings
-also				Conversational
-ask				Conversational
-because				Conversational
-boy				#N/A
-but				Conversational
-can				Conversational
-take				Conversational
-done				Conversational
-drink				Conversational, Drinks
-eat				Conversational, Food
-email_address				Computing
-excuse_me				Conversational
-remember				Conversational
-fine				Conversational, Feelings
-meet				Conversational
-more				Conversational
-tell				Conversational
-computer				Computing
-texting				Computing, Conversational
-come				Conversational
-water				Drinks
-for				Conversational
-get				Conversational
-girl				#N/A
-give				Conversational
-good				Conversational
-help				Conversational
-school				Conversational
-internet				Computing
-know				Conversational
-little				Conversational
-man				#N/A
-many				Conversational
-have				Conversational
-new				Adjectives, Conversational
-not				Conversational
-old				Adjectives, Conversational
-other				Conversational
-play				Actions, Conversational
-same				Conversational
-say				Conversational
-see				Conversational
-should				Conversational
-sorry				Conversational
-some				Conversational
-use				Conversational
-will				#N/A
-with				Common Food Phrases, Conversational
-woman				#N/A
-work				Conversational
-write				Conversational
-few				Conversational
-toilet				Conversational
-need				Conversational
-if				Conversational
-different				Conversational
-food				Conversational
-walk				Conversational, Disability Awareness, Physical Health, Travel
-wheelchair				Disability Awareness, Physical Health
-sneeze				Disability Awareness, Physical Health
-seizure				Disability Awareness, Physical Health
-pass_out				Disability Awareness, Physical Health
-ongoing				Disability Awareness, Physical Health
-nauseous				Disability Awareness, Physical Health
-migraine				Disability Awareness, Physical Health
-limit				Disability Awareness, Physical Health
-lie_down				Disability Awareness, Physical Health
-hygiene				Disability Awareness, Physical Health
-machine				Disability Awareness, Physical Health
-blind				Disability Awareness, Physical Health
-braille				Disability Awareness, Physical Health
-asthma				Disability Awareness, Physical Health
-acceptance				Disability Awareness
-adapt				Disability Awareness
-assistance				Disability Awareness
-prevention				Disability Awareness
-abled				Disability Awareness
-discrimination				Disability Awareness
-social_worker				Disability Awareness
-carer				Disability Awareness
-exhaustion				Disability Awareness, Feelings
-grin_and_bear_it				Disability Awareness, Feelings
-safeguard				Disability Awareness
-hospital				Disability Awareness, First Aid
-emergency				Disability Awareness, First Aid
-bleeding				Disability Awareness, First Aid
-easy_chair				Disability Awareness, First Aid
-lose_hearing				Deaf Terminology, Disability Awareness
-lip_pattern				Deaf Terminology, Disability Awareness
-interpreter				Deaf Terminology, Disability Awareness
-captions				Deaf Terminology, Disability Awareness
-anorexia				Disability Awareness, Mental Health
-anxiety				Disability Awareness, Mental Health
-addiction				Disability Awareness, Mental Health
-alter				Disability Awareness, Mental Health
-bipolar				Disability Awareness, Mental Health
-counselling				Disability Awareness, Mental Health
-disassociation				Disability Awareness, Mental Health
-disorder				Disability Awareness, Mental Health
-focus				Disability Awareness, Feelings, Mental Health
-depression				Disability Awareness, Feelings, Mental Health
-lose_temper				Disability Awareness, Mental Health
-PTSD				Disability Awareness, Mental Health
-calm				Disability Awareness, Feelings, Mental Health
-personality_disorder				Disability Awareness, Mental Health
-lose_weight				Disability Awareness, Mental Health
-gain_weight				Disability Awareness, Mental Health
-OCD				Disability Awareness, Mental Health
-panic_attack				Disability Awareness, Mental Health
-vaccination				Disability Awareness, Medical
-prescription				Disability Awareness, Medical
-contraception				Disability Awareness, Medical
-poorly				Disability Awareness, Medical
-pill				Disability Awareness, Medical
-pharmacist				Medical
-nurse				Medical
-measles				Medical
-mumps				Medical
-meningitis				Medical
-medical				Medical
-medical_insurance				Medical
-syringe				Medical
-				
-family				Family
-mother				Family
-father				Family
-dad				Family
-sister				Family
-brother				Family
-grand				Family
-daughter				Family
-son				Family
-spouse			wife/husband	Family, Marriage
-baby				Family
-friend				Conversational, Relationships
-only_child				Family
-				
-house				Places
-flat				Places
-farm				Places
-tent				Places
-sea				Places
-river				Places
-country				Countries, Places
-city				Cities, Places
-town				Places
-live				Places
-address				Places
-europe				Places
-england				Countries
-scotland				Countries
-ireland				Countries
-wales				Countries
-north				Places, Travel
-south				Places, Travel
-east				Places, Travel
-west				Places, Travel
-america				Countries
-earth				Places
-space				Places
-opposite				Places
-outside				Places
-inside				Places
-near				Places
-bath				Cities
-brighton				Cities
-bristol				Cities
-bournemouth				Cities
-cambridge				Cities
-cardiff				Cities
-coventry				Cities
-exeter				Cities
-leicester				Cities
-london				Cities
-nottingham				Cities, Conversational
-oxford				Cities
-plymouth				Cities
-sheffield				Cities
-southampton				Cities
-belfast				Cities
-birmingham				Cities
-carlisle				Cities
-edinburgh				Cities
-glasgow				Cities
-leeds				Cities
-liverpool				Cities
-manchester				Cities
-newcastle				Cities, Conversational
-swansea				Cities
-wolverhampton				Cities
-york				Cities
-party				Social Events
-festival				Social Events
-bar				Social Events
-pub				Social Events
-sport				Social Events, Sports, Sports Terminology
-gaming				Social Events, Video Games
-volunteer				Social Events
-travel				Social Events, Travel
-toilet				Conversational
-drink				Conversational, Drinks
-reading				Hobbies
-help				Conversational
-fly				Travel
-plane				Travel
-sail				Travel
-boat				Places, Travel
-navigate				Travel
-walk				Conversational, Disability Awareness, Physical Health, Travel
-drive				Travel
-train				Travel
-				
-red				Colours
-yellow				Colours
-green				Colours
-blue				Colours
-purple				Colours
-pink				Colours
-grey				Colours
-brown				Colours
-black				Colours
-white				Colours
-gold				Colours
-silver				Colours
-bronze				Colours
-				
-tshirt				Casual Clothes
-jumper				Casual Clothes
-jeanstrousers				Casual Clothes
-skirt				Casual Clothes
-shorts				Casual Clothes
-shoes				Casual Clothes
-underwear				Casual Clothes
-				
-dress				Formal Clothes
-suit				Formal Clothes
-boots				Formal Clothes
-smart_formal				Formal Clothes
-casual				Formal Clothes
-				
-swimming_costume				Other Clothes
-swimming_trunks				Other Clothes
-pyjamas				Other Clothes
-gym_clothes				Other Clothes
-trainers				Other Clothes
-				
-goat				Animals, Farmyard Animals
-sheep				Animals, Farmyard Animals
-pig				Animals, Farmyard Animals
-cow				Animals, Farmyard Animals
-rabbit				Animals, Farmyard Animals
-duck				Animals, Farmyard Animals
-turkey				Animals, Farmyard Animals
-horse				Animals, Farmyard Animals
-cat				Animals, Farmyard Animals
-dog				Animals, Farmyard Animals
-spider				Animals, Farmyard Animals
-				
-bear				Animals, Zoo Animals
-wolf				Animals, Zoo Animals
-elephant				Animals, Zoo Animals
-giraffe				Animals, Zoo Animals
-tiger				Animals, Zoo Animals
-lion				Animals, Zoo Animals
-rhino				Animals, Zoo Animals
-kangaroo				Animals, Zoo Animals
-zebra				Animals, Zoo Animals
-panda				Animals, Zoo Animals
-monkey				Animals, Zoo Animals
-camel				Animals, Zoo Animals
-penguin				Animals, Zoo Animals
-birds				Animals, Zoo Animals
-owl				Animals, Zoo Animals
-big				Adjectives, Conversational
-				
-deer				Animals, Woodland Animals
-mouse				Animals, Woodland Animals
-insect				Animals, Woodland Animals
-worm				Animals, Woodland Animals
-snail				Animals, Woodland Animals
-				
-jellyfish				Animals, Fish 
-shark				Animals, Fish 
-whale				Animals, Fish 
-dolphin				Animals, Fish 
-octopus				Animals, Fish 
-				
-snake				Animals, Reptiles
-lizard				Animals, Reptiles
-crocodile				Animals, Reptiles
-turtle				Animals, Reptiles
-frog				Animals, Reptiles
-				
-jump				Actions
-run				Actions
-play				Actions, Conversational
-				
-striped				Adjectives
-dotted				Adjectives
-big				Adjectives, Conversational
-small				Adjectives
-soft				Adjectives
-hard				Adjectives
-slippery				Adjectives
-furry				Adjectives
-feather				Adjectives
-light				Adjectives
-dark				Adjectives
-plaid				Adjectives
-pattern				Adjectives
-shiny				Adjectives
-bold				Adjectives
-dull				Adjectives
-				
-apple				Food, Fruit
-peach				Food, Fruit
-pear				Food, Fruit
-plum				Food, Fruit
-banana				Food, Fruit
-berry			Usually combined with a colour such a black or blue	Food, Fruit
-cheery				Food, Fruit
-current			Usually combined with black, red or white for the different currents	Food, Fruit
-grape				Food, Fruit
-kiwi				Food, Fruit
-melon				Food, Fruit
-orange				Colours, Food, Fruit
-lemon				Food, Fruit
-lime				Food, Fruit
-pineapple				Food, Fruit
-raspberry				Food, Fruit
-strawberry				Food, Fruit
-tomato				Food, Fruit
-clementine		spelt		Food, Fruit
-mandarin		spelt		Food, Fruit
-cloudberry		spelt		Food, Fruit
-cranberry		spelt		Food, Fruit
-fig		spelt		Food, Fruit
-juniper		spelt		Food, Fruit
-mango		spelt		Food, Fruit
-papaya		spelt		Food, Fruit
-passion_fruit		spelt		Food, Fruit
-				
-aubergine				Food, Vegetables
-bean			Can be combined with black or red	Food, Vegetables
-broccoli				Food, Vegetables
-cauliflower				Food, Vegetables
-cabbage				Food, Vegetables
-lettuce				Food, Vegetables
-carrot				Food, Vegetables
-celery				Food, Vegetables
-chili			(red/hot/spicy)	Food, Vegetables
-corn				Food, Vegetables
-cucumber				Food, Vegetables
-mushroom				Food, Vegetables
-onion				Food, Vegetables
-pea				Food, Vegetables
-potato				Food, Vegetables
-turnip				Food, Vegetables
-beet		spelt	(beetroot)	Food, Vegetables
-bean		spelt	(black, broad, cacao, pinto)	Food, Vegetables
-chard		spelt		Food, Vegetables
-chickpea		spelt		Food, Vegetables
-haricot		spelt		Food, Vegetables
-leek		spelt		Food, Vegetables
-lentil		spelt		Food, Vegetables
-olive		spelt		Food, Vegetables
-raddish		spelt		Food, Vegetables
-pepper		spelt		Condiments, Food, Vegetables
-				
-bacon				Food, Meat
-sausage				Food, Meat
-beef				Food, Meat
-chicken				Animals, Farmyard Animals, Food, Meat
-cutletslice				Food, Meat
-				
-shellfish				Fish , Food
-seafood				Fish , Food
-cod				Fish , Food
-lobster				Fish , Food
-prawn				Fish , Food
-salmon				Fish , Food
-				
-alcohol				Drinks
-coffee			Can be combined with white or black for white or black coffee	Drinks
-tea			Can be combined with white or black for white or black tea	Drinks
-coca_cola				Drinks
-beer				Drinks
-cider				Drinks
-milk				Drinks
-soft_drink				Drinks
-				
-salt				Condiments
-pepper				Condiments, Food, Vegetables
-mayonnaise				Condiments
-ketchup				Condiments
-				
-add				Common Food Phrases
-with				Common Food Phrases, Conversational
-close				Common Food Phrases
-food_allergy				Common Food Phrases
-raw				Common Food Phrases
-cooked				Common Food Phrases
-				
-baked_potato				Common Food, Food
-boiled_egg				Common Food, Food
-burger				Common Food, Food
-hot_dog				Common Food, Food
-nacho				Common Food, Food
-pizza		The letters PZZ		Common Food, Food
-rice				Common Food, Food
-pasta				Common Food, Food
-cheese				Common Food, Food
-				
-coconut_milk				Alternates & Allergens
-goat_milk				Alternates & Allergens
-cereal_products		Each word signed individually		Alternates & Allergens
-dairy_products		Each word signed individually		Alternates & Allergens
-nuts				Alternates & Allergens
-				
-adopted		Grab	Combined with Child/Parent	Family
-foster		2 scissor		Family
-inlaw			Combined with Daughter/Son/Brother/Sister/Mother/Father	Family
-orphan		No mother father		Family
-parent		mother father		Family
-single_parent		ring parent		Family
-step			Combined with brother/sister/mother/father/child	Family
-custody		family single person grab		Family
-				
-boyfriend				Relationships
-girlfriend				Relationships
-companion		fist turn 2 away		Relationships
-couple		ring 2 scissor		Relationships
-friendship				Relationships
-lover		love person		Relationships
-fianc				Relationships
-widowed		woman over there spouse dead		Relationships
-widower		man over there spouse dead		Relationships
-				
-bachelor		ring hover swipe		Relationship Terminology
-unmarried		ring no		Relationship Terminology
-sweetheart		twist finger in cheek and heart		Relationship Terminology
-breakup		2 finger circle 2 finger part		#N/A
-reconciliation		together bold		Relationship Terminology
-anniversary				Relationship Terminology
-valentines_day				Relationship Terminology
-kiss				Relationship Terminology
-				
-annulment		fists part		Marriage
-divorce		ring throw		Marriage
-engagement		fiancé		Marriage
-newlywed		grow ring slap 		Marriage
-person_of_honor		woman forward pride		Marriage
-				
-parade			celebration	LGBTQIA+
-asexual				LGBTQIA+
-bisexual				LGBTQIA+
-gay				LGBTQIA+
-lesbian				LGBTQIA+
-heterosexual				LGBTQIA+
-sexuality				LGBTQIA+
-spectrum		palms apart		LGBTQIA+
-gender		g person chest		LGBTQIA+
-nonbinary		g finger apart		LGBTQIA+
-feminine				LGBTQIA+
-masculinity				LGBTQIA+
-drag_queen		king gay hot man turns woman wears dress sits cross legs / Woman turn man heels		LGBTQIA+
-homophobia		little finger across palm		LGBTQIA+
-				
-award				Sports Terminology
-captain				Sports Terminology
-cheat				Sports Terminology
-compete				Sports Terminology
-medel				Sports Terminology
-active				Sports Terminology
-				
-acrobatics				Athletics
-cycling				Athletics
-bodybuilding				Athletics
-cheerleading				Athletics
-cross_country_running				Athletics
-trampolining				Athletics
-running				Athletics
-rowing				Athletics
-marathon				Athletics
-javelin				Athletics
-exercise				Athletics
-				
-aquatics				Sports
-archery				Sports
-bouldering				Sports
-fencing				Sports
-figure_skating				Sports
-canoe				Sports
-climbing				Sports
-surf				Sports
-equestrian				Sports
-golf				Sports
-hiking				Sports
-kayak				Sports
-sailing				Sports
-ski				Sports
-yoga				Sports
-water_ski				Sports
-badminton				Sports
-baseball				Sports
-basketball				Sports
-athletic				Sports
-bowling				Sports
-cricket				Sports
-football				Sports
-tennis				Sports
-volleyball				Sports
-waterpolo				Sports
-table_tennis				Sports
-rugby				Sports
-polo				Sports
-paintball				Sports
-hockey				Sports
-ice_hockey				Sports
-				
-bingo				Board Games
-blackjack				Board Games
-card_game				Board Games
-chess				Board Games
-crossword				Board Games
-draughts				Board Games
-jigsaw_puzzle				Board Games
-				
-pool				Games
-snooker				Games
-darts				Games
-pinball				Games
-quiz				Games
-				
-boxing				Martial Arts
-karate				Martial Arts
-kickboxing				Martial Arts
-judo				Martial Arts
-taekwondo				Martial Arts
-tai_chi_chuan				Martial Arts
-wrestle				Martial Arts
-				
-call_of_duty				Video Games
-candy_crush				Video Games
-computer_game				Video Games
-tetris				Video Games
-legend_of_zelda				Video Games
-sims				Video Games
-super_mario_bros				Video Games
-resident_evil				Video Games
-pokemon_go				Video Games
-league_of_legends				Video Games
-grand_theft_auto				Video Games
-fortnite				Video Games
-formula_one				Video Games
-final_fantasy				Video Games
-				
-camping				Hobbies
-fishing				Hobbies
-go_cart				Hobbies
-juggle				Hobbies
-roller_skating				Hobbies
-scout				Hobbies
-skate_board				Hobbies
-stamp_collecting				Hobbies
+feelings				
+happy				
+excited				
+surprised				
+proud				
+angry				
+grumpy				
+confused				
+tired				
+sad				
+depressed				
+lonely				
+nervous				
+shy				
+hungry				
+also				
+ask				
+because				
+boy				
+but				
+can				
+take				
+done				
+drink				
+eat				
+email_address				
+excuse_me				
+remember				
+fine				
+meet				
+more				
+tell				
+computer				
+texting				
+come				
+water				
+for				
+get				
+girl				
+give				
+good				
+help				
+school				
+internet				
+know				
+little				
+man				
+many				
+have				
+new				
+not				
+old				
+other				
+play				
+same				
+say				
+see				
+should				
+some				
+use				
+will				
+with				
+woman				
+work				
+write				
+few				
+toilet				
+need				
+if				
+different				
+food				
+walk				
+wheelchair				
+sneeze				
+seizure				
+pass_out				
+ongoing				
+nauseous				
+migraine				
+limit				
+lie_down				
+hygiene				
+machine				
+blind				
+braille				
+asthma				
+acceptance				
+adapt				
+assistance				
+prevention				
+abled				
+discrimination				
+social_worker				
+carer				
+exhaustion				
+grin_and_bear_it				
+safeguard				
+hospital				
+emergency				
+bleeding				
+easy_chair				
+lose_hearing				
+lip_pattern				
+interpreter				
+captions				
+anorexia				
+anxiety				
+addiction				
+alter				
+bipolar				
+counselling				
+disassociation				
+disorder				
+focus				
+depression				
+lose_temper				
+PTSD				
+calm				
+personality_disorder				
+lose_weight				
+gain_weight				
+OCD				
+panic_attack				
+vaccination				
+prescription				
+contraception				
+poorly				
+pill				
+pharmacist				
+nurse				
+measles				
+mumps				
+meningitis				
+medical				
+medical_insurance				
+syringe				
+family				
+mother				
+father				
+dad				
+sister				
+brother				
+grand				
+daughter				
+son				
+spouse				wife/husband
+baby				
+friend				
+only_child				
+house				
+flat				
+farm				
+tent				
+sea				
+river				
+country				
+city				
+town				
+live				
+address				
+europe				
+england				
+scotland				
+ireland				
+wales				
+north				
+south				
+east				
+west				
+america				
+earth				
+space				
+opposite				
+outside				
+inside				
+near				
+bath				
+brighton				
+bristol				
+bournemouth				
+cambridge				
+cardiff				
+coventry				
+exeter				
+leicester				
+london				
+nottingham				
+oxford				
+plymouth				
+sheffield				
+southampton				
+belfast				
+birmingham				
+carlisle				
+edinburgh				
+glasgow				
+leeds				
+liverpool				
+manchester				
+newcastle				
+swansea				
+wolverhampton				
+york				
+party				
+festival				
+bar				
+pub				
+sport				
+gaming				
+volunteer				
+travel				
+reading				
+fly				
+plane				
+sail				
+boat				
+navigate				
+drive				
+train				
+red				
+yellow				
+green				
+blue				
+purple				
+pink				
+grey				
+brown				
+black				
+white				
+gold				
+silver				
+bronze				
+tshirt				
+jumper				
+jeanstrousers				
+skirt				
+shorts				
+shoes				
+underwear				
+dress				
+suit				
+boots				
+smart_formal				
+casual				
+swimming_costume				
+swimming_trunks				
+pyjamas				
+gym_clothes				
+trainers				
+goat				
+sheep				
+pig				
+cow				
+rabbit				
+duck				
+turkey				
+horse				
+cat				
+dog				
+spider				
+bear				
+wolf				
+elephant				
+giraffe				
+tiger				
+lion				
+rhino				
+kangaroo				
+zebra				
+panda				
+monkey				
+camel				
+penguin				
+birds				
+owl				
+big				
+deer				
+mouse				
+insect				
+worm				
+snail				
+jellyfish				
+shark				
+whale				
+dolphin				
+octopus				
+snake				
+lizard				
+crocodile				
+turtle				
+frog				
+jump				
+run				
+striped				
+dotted				
+small				
+soft				
+hard				
+slippery				
+furry				
+feather				
+light				
+dark				
+plaid				
+pattern				
+shiny				
+bold				
+dull				
+apple				
+peach				
+pear				
+plum				
+banana				
+berry				Usually combined with a colour such a black or blue
+cheery				
+current				Usually combined with black, red or white for the different currents
+grape				
+kiwi				
+melon				
+orange				
+lemon				
+lime				
+pineapple				
+raspberry				
+strawberry				
+tomato				
+clementine			spelt	
+mandarin			spelt	
+cloudberry			spelt	
+cranberry			spelt	
+fig			spelt	
+juniper			spelt	
+mango			spelt	
+papaya			spelt	
+passion_fruit			spelt	
+aubergine				
+bean				Can be combined with black or red
+broccoli				
+cauliflower				
+cabbage				
+lettuce				
+carrot				
+celery				
+chili				(red/hot/spicy)
+corn				
+cucumber				
+mushroom				
+onion				
+pea				
+potato				
+turnip				
+beet			spelt	(beetroot)
+chard			spelt	
+chickpea			spelt	
+haricot			spelt	
+leek			spelt	
+lentil			spelt	
+olive			spelt	
+raddish			spelt	
+pepper			spelt	
+bacon				
+sausage				
+beef				
+chicken				
+cutletslice				
+shellfish				
+seafood				
+cod				
+lobster				
+prawn				
+salmon				
+alcohol				
+coffee				Can be combined with white or black for white or black coffee
+tea				Can be combined with white or black for white or black tea
+coca_cola				
+beer				
+cider				
+milk				
+soft_drink				
+salt				
+mayonnaise				
+ketchup				
+add				
+close				
+food_allergy				
+raw				
+cooked				
+baked_potato				
+boiled_egg				
+burger				
+hot_dog				
+nacho				
+pizza			The letters PZZ	
+rice				
+pasta				
+cheese				
+coconut_milk				
+goat_milk				
+cereal_products			Each word signed individually	
+dairy_products			Each word signed individually	
+nuts				
+adopted			Grab	Combined with Child/Parent
+foster			2 scissor	
+inlaw				Combined with Daughter/Son/Brother/Sister/Mother/Father
+orphan			No mother father	
+parent			mother father	
+single_parent			ring parent	
+step				Combined with brother/sister/mother/father/child
+custody			family single person grab	
+boyfriend				
+girlfriend				
+companion			fist turn 2 away	
+couple			ring 2 scissor	
+friendship				
+lover			love person	
+fianc				
+widowed			woman over there spouse dead	
+widower			man over there spouse dead	
+bachelor			ring hover swipe	
+unmarried			ring no	
+sweetheart			twist finger in cheek and heart	
+breakup			2 finger circle 2 finger part	
+reconciliation			together bold	
+anniversary				
+valentines_day				
+kiss				
+annulment			fists part	
+divorce			ring throw	
+engagement			fiancé	
+newlywed			grow ring slap 	
+person_of_honor			woman forward pride	
+parade				celebration
+asexual				
+bisexual				
+gay				
+lesbian				
+heterosexual				
+sexuality				
+spectrum			palms apart	
+gender			g person chest	
+nonbinary			g finger apart	
+feminine				
+masculinity				
+drag_queen			king gay hot man turns woman wears dress sits cross legs / Woman turn man heels	
+homophobia			little finger across palm	
+award				
+captain				
+cheat				
+compete				
+medel				
+active				
+acrobatics				
+cycling				
+bodybuilding				
+cheerleading				
+cross_country_running				
+trampolining				
+running				
+rowing				
+marathon				
+javelin				
+exercise				
+aquatics				
+archery				
+bouldering				
+fencing				
+figure_skating				
+canoe				
+climbing				
+surf				
+equestrian				
+golf				
+hiking				
+kayak				
+sailing				
+ski				
+yoga				
+water_ski				
+badminton				
+baseball				
+basketball				
+athletic				
+bowling				
+cricket				
+football				
+tennis				
+volleyball				
+waterpolo				
+table_tennis				
+rugby				
+polo				
+paintball				
+hockey				
+ice_hockey				
+bingo				
+blackjack				
+card_game				
+chess				
+crossword				
+draughts				
+jigsaw_puzzle				
+pool				
+snooker				
+darts				
+pinball				
+quiz				
+boxing				
+karate				
+kickboxing				
+judo				
+taekwondo				
+tai_chi_chuan				
+wrestle				
+call_of_duty				
+candy_crush				
+computer_game				
+tetris				
+legend_of_zelda				
+sims				
+super_mario_bros				
+resident_evil				
+pokemon_go				
+league_of_legends				
+grand_theft_auto				
+fortnite				
+formula_one				
+final_fantasy				
+camping				
+fishing				
+go_cart				
+juggle				
+roller_skating				
+scout				
+skate_board				
+stamp_collecting				

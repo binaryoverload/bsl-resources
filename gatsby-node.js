@@ -26,14 +26,17 @@ function makeSignNode(sign, { createNodeId, createContentDigest }) {
 }
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
+
     const fileBase = "./src/data/"
     const signData = await getData(fileBase + "signs.tsv")
+    if (signData.error) throw signData.error
 
     const groupingData = {}
 
     const groupingMeta = await getData(fileBase + "groupings/groupings_meta.tsv")
-    if (groupingData.error) throw groupingData.error
+    if (groupingMeta.error) throw groupingMeta.error
 
+    console.log("groupingMeta", groupingMeta)
     for (let grouping of groupingMeta.results) {
         const name = grouping.name
         grouping.data = []
@@ -77,8 +80,6 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
         actions.createNode(node);
     });
 
-    console.log(JSON.stringify(groupingData, null, 2))
-
     Object.keys(groupingData).forEach(groupingName => {
         const node = {
             ...groupingData[groupingName],
@@ -99,7 +100,12 @@ function getData(fileName) {
     return new Promise(resolve => {
         let results = []
 
-        const file = fs.readFileSync(fileName).toString()
+        let file
+        try {
+            file = fs.readFileSync(fileName).toString()
+        } catch (e) {
+            resolve({error: e})
+        }
         Readable.from(file.split("\n"))
             .pipe(csv({
                 mapHeaders: ({ header }) => header === "" ? null : header,
@@ -112,7 +118,10 @@ function getData(fileName) {
                 separator: "\t"
             }))
             .on('data', (data) => results.push(data))
-            .on('error', (err) => resolve({ err }))
+            .on('error', (error) => {
+                console.error(error)
+                resolve({ error })
+            })
             .on('end', () => {
                 resolve({ results })
             });
