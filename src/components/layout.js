@@ -36,7 +36,7 @@ const Layout = ({ children, className }) => {
       </Navbar>
 
       <main>
-        <Container className={`pt-5 ${className}`}>
+        <Container className={`${className}`}>
           { children }
         </Container>
       </main>
