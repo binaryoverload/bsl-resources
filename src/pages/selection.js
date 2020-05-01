@@ -23,10 +23,10 @@ if (!Array.prototype.chunk) {
 const ToggleButtons = ({ groupings, selectedButton, setSelectedButton }) => {
   if (groupings.length > 1) {
     return (
-      <Row className="justify-content-center">
+      <Row className="justify-content-center mt-3">
         <ToggleButtonGroup name="test" value={selectedButton} onChange={setSelectedButton}>
           {groupings.map(grouping => (
-            <ToggleButton variant="dark" key={grouping.id} value={grouping.meta.name}>{grouping.meta.display_name}</ToggleButton>
+            <ToggleButton variant="dark" key={grouping.id} value={grouping.name}>{grouping.display_name}</ToggleButton>
           ))}
         </ToggleButtonGroup>
       </Row>
@@ -38,8 +38,8 @@ const ToggleButtons = ({ groupings, selectedButton, setSelectedButton }) => {
 
 const SelectionPage = ({ data }) => {
 
-  const [selectedButton, setSelectedButton] = useState(data.allGrouping.nodes[0]?.meta.name);
-  const grouping = data.allGrouping.nodes.find(grouping => selectedButton === grouping.meta.name);
+  const [selectedButton, setSelectedButton] = useState(data.allGrouping.nodes[0]?.name);
+  const grouping = data.allGrouping.nodes.find(grouping => selectedButton === grouping.name);
 
   if (data.allGrouping.nodes.length === 0) {
     return (
@@ -52,10 +52,10 @@ const SelectionPage = ({ data }) => {
   return (
     <>
       <SEO title="Practice by Category" />
-      <Layout>
+      <Layout> 
         <ToggleButtons groupings={data.allGrouping.nodes} selectedButton={selectedButton} setSelectedButton={setSelectedButton}/>
         <Row className="justify-content-center">
-          <Col lg={6}>
+          <Col xl={6} lg={8}>
             <SelectionView grouping={grouping} />
           </Col>
         </Row>
@@ -69,17 +69,15 @@ export const query = graphql`
         allGrouping {
             nodes {
               id
-              results {
+              display_name
+              name
+              unknown
+              all
+              data {
                 display_name
                 name
-                elements
-              }
-              meta {
-                display_name
-                name
-                unknown
-                all
-              }
+                signs
+              } 
             }
           }
     }
