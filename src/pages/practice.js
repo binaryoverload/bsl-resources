@@ -217,7 +217,6 @@ export const query = graphql`
         allSign {
             nodes {
               sign
-              weeks
               notes
               hint
             }
