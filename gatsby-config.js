@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `BSL Resources`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `A project created to assist University of Lincoln's British Sign Language society with teaching sign language!`,
     author: `William Oldham`,
   },
   plugins: [
