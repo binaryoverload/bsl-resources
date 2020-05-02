@@ -2,7 +2,7 @@ import React from "react"
 
 import SEO from "../components/seo"
 import Layout from "../components/layout"
-import { Row, Col, Button, Card } from "react-bootstrap"
+import { Row, Col } from "react-bootstrap"
 
 import Practice from "../components/indexModules/practiceModule"
 import Dictionary from "../components/indexModules/dictionaryModule"
