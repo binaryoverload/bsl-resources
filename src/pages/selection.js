@@ -12,14 +12,6 @@ import SelectionView from "../views/selection-view"
 
 import "antd/es/result/style/index.css"
 
-if (!Array.prototype.chunk) {
-  Object.defineProperty(Array.prototype, 'chunk', {
-    value: function (n) {
-      return Array(Math.ceil(this.length / n)).fill().map((_, i) => this.slice(i * n, i * n + n));
-    }
-  });
-}
-
 const ToggleButtons = ({ groupings, selectedButton, setSelectedButton }) => {
   if (groupings.length > 1) {
     return (
