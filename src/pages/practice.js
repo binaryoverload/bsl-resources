@@ -24,6 +24,7 @@ function useQuerySigns(data, location) {
                     grouping_name: grouping.name,
                     groupings: matchingGroupings.map(category => { return { name: category.name, display_name: category.display_name } }),
                     signs: matchingGroupings.flatMap(category => category.signs)
+                                            .map(signName => data.allSign.nodes.find(sign => sign.sign === signName) || signName)
                 }
             }
         }
