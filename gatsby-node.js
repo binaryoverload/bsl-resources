@@ -36,7 +36,6 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     const groupingMeta = await getData(fileBase + "groupings/groupings_meta.tsv")
     if (groupingMeta.error) throw groupingMeta.error
 
-    console.log("groupingMeta", groupingMeta)
     for (let grouping of groupingMeta.results) {
         const name = grouping.name
         grouping.data = []
@@ -60,6 +59,12 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
                 data.signs = [...(data.signs || []), groupData.sign]
             }
         }
+
+        grouping.data.push({
+            name: grouping.unknown,
+            display_name: " " + grouping.unknown_display,
+            signs: signData.results.filter(sign => groupDataIn.results.filter(data => data.sign === sign.sign).length === 0).map(sign => sign.sign)
+        })        
 
         for (let groupMeta of groupMetaIn.results) {
             const data = grouping.data.find((data) => data.name === groupMeta.name)
