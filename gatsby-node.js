@@ -120,7 +120,7 @@ function getData(fileName) {
                 resolve({ error })
             })
             .on('end', () => {
-                console.log(fileName, ": ", results.length)
+                console.log("Processed file ", fileName, " with ", results.length, " records")
                 resolve({ results })
             });
     })
