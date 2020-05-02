@@ -31,7 +31,7 @@ const SelectionView = ({ grouping, onChange }) => {
 
     return (
         <Card className="my-3">
-            <Card.Header className="sticky-top pb-3" style={{"background-color": "#FFF"}}>
+            <Card.Header className="sticky-top pb-3" style={{backgroundColor: "#FFF"}}>
                 <Nav className="d-flex flex-md-row flex-column mb-3 flex-nowrap">
                     <Nav.Item id="selection-header" className="mr-auto">
                         <h6 className="my-2">Choose the {grouping.display_name.toLowerCase()} to practice</h6>
