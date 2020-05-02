@@ -31,11 +31,11 @@ const SelectionView = ({ grouping, onChange }) => {
 
     return (
         <Card className="my-3">
-            <Card.Header className="sticky-top pb-3" style={{backgroundColor: "#FFF"}}>
-                <Nav className="d-flex flex-md-row flex-column mb-3 flex-nowrap">
+            <Card.Header className="sticky-top pb-2" style={{backgroundColor: "#FFF"}}>
+                <Nav className="d-flex flex-md-row flex-column mb-2 flex-nowrap">
                     <Nav.Item id="selection-header" className="mr-auto">
                         <h6 className="my-2">Choose the {grouping.display_name.toLowerCase()} to practice</h6>
-                        <p className="text-muted m-0">Select multiple {grouping.display_name.toLowerCase()} to practice or choose just one by clicking <FontAwesomeIcon icon={faSignLanguage} />!</p>
+                        <p className="text-muted m-0 mb-3">Select multiple {grouping.display_name.toLowerCase()} to practice or choose just one by clicking <FontAwesomeIcon icon={faSignLanguage} />!</p>
                     </Nav.Item>
                     <Nav.Item id="selection-button" className="align-self-center flex-shrink-0">
                         <Link to={`/practice${selectedGroups.length > 0 ? `?${grouping.name}=${selectedGroups.join(",")}` : ''}`}>

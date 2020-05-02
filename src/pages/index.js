@@ -10,7 +10,7 @@ import Dictionary from "../components/indexModules/dictionaryModule"
 const IndexPage = () => (
   <>
     <SEO title="Home" />
-    <Layout>
+    <Layout className="pt-3">
       <Row>
         <Col lg={6}>
           <Practice/>
