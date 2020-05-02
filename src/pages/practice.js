@@ -1,15 +1,16 @@
 import React, { useMemo, useState } from "react"
+import { graphql } from 'gatsby'
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-import { Row, Col, Card, Button, Collapse, OverlayTrigger, Popover, Nav } from "react-bootstrap"
+import { Row, Col, Card, Button, Collapse, OverlayTrigger, Popover, Nav, Badge } from "react-bootstrap"
 import { Empty, Result } from "antd"
 import "antd/es/empty/style/index.css"
 import "antd/es/result/style/index.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
-import { displayFormat } from "../utils/title-case"
 
 function useQuerySigns(data, location) {
     let params = new URLSearchParams(location.search.slice(1));
@@ -17,45 +18,29 @@ function useQuerySigns(data, location) {
         for (let grouping of data.allGrouping.nodes) {
             if (params.has(grouping.name) && params.get(grouping.name)) {
                 const groupings = params.get(grouping.name).split(",")
-                return grouping.data
-                    .filter(grouping => groupings.includes(grouping.name))
-                    .flatMap(category => category.signs)
+                const matchingGroupings = grouping.data.filter(grouping => groupings.includes(grouping.name))
+
+                return {
+                    grouping_name: grouping.display_name,
+                    groupings: matchingGroupings.map(category => { return { name: category.name, display_name: category.display_name } }),
+                    signs: matchingGroupings.flatMap(category => category.signs)
+                }
             }
         }
-        return data.allGrouping.nodes.flatMap(category => category.data.flatMap(data => data.signs))
+        return {
+            grouping_name: "all_signs",
+            signs: data.allGrouping.nodes
+                .flatMap(category => category.data.flatMap(data => data.signs))
+                .map(signName => data.allSign.nodes.find(sign => sign.sign === signName) || signName)
+        }
     }, [params, data])
-}
-
-function getWeeksOrCategories( data, location ) {
-    let params = new URLSearchParams(location.search.slice(1));
-
-    if (params.has("category") && params.get("category")) {
-        const categories = params.get("category").split(",")
-        return {
-            categories: data.allCategory.nodes
-                            .filter(category => categories.includes(category.name))
-                            .map(category => category.name)
-        }
-    }
-    if (params.has("week") && params.get("week")) {
-        const weeks = params.get("week").split(",")
-        return {
-            weeks: data.allWeek.nodes
-                            .filter(week => weeks.includes(week.name))
-                            .map(week => week.name)
-        }
-    }
-    return {}
 }
 
 const Video = ({ video }) => {
     if (video) {
         return <video src={video} autoPlay loop className="w-100"></video>
-    } else {
-        return <Empty
-            description={<span className="text-body">No video is available for this sign yet!</span>}
-            image={Empty.PRESENTED_IMAGE_SIMPLE} />
     }
+    return null
 }
 
 const HintOverlay = ({ hint }) => {
@@ -63,7 +48,7 @@ const HintOverlay = ({ hint }) => {
         return (
             <OverlayTrigger
                 trigger={["hover", "click"]}
-                placement="top"
+                placement="right"
                 overlay={
                     <Popover>
                         <Popover.Content>
@@ -79,99 +64,88 @@ const HintOverlay = ({ hint }) => {
     }
 }
 
-const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => (
-    <>
-        <Button
-            onClick={() => setVideoOpen(!videoOpen)}
-            size="sm"
-            disabled={video_url ? false : true}
-            variant={video_url ? (videoOpen ? "danger" : "success") : "secondary"}
-            aria-controls="video-collapse"
-            aria-expanded={videoOpen}>
-            {video_url ? ((videoOpen ? "Close" : "Show") + " Video") : "No video available"}
-        </Button>
-        <Collapse in={videoOpen} className="m-3">
-            <div id="video-collapse">
-                <Video video={video_url} />
-            </div>
-        </Collapse>
-    </>
-)
+const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => {
+    if (video_url) {
+        return (
+            <>
+                <Button
+                    onClick={() => setVideoOpen(!videoOpen)}
+                    size="sm"
+                    variant={videoOpen ? "danger" : "success"}
+                    aria-controls="video-collapse"
+                    aria-expanded={videoOpen}>
+                    {(videoOpen ? "Close" : "Show") + " Video"}
+                </Button>
+                <Collapse in={videoOpen} className="m-3">
+                    <div id="video-collapse">
+                        <Video video={video_url} />
+                    </div>
+                </Collapse>
+            </>
+        )
+    } else {
+        return (
+            <Button size="sm" variant="secondary" disabled={true}>No video available</Button>
+        )
+    }
+}
+
+const SignNotes = ({ sign }) => {
+    if (sign.notes) {
+        return (<p className="text-muted">{sign.notes}</p>)
+    } else {
+        return null
+    }
+}
 
 const SignContent = ({ data, sign, videoOpen, setVideoOpen }) => {
     if (sign) {
         return (
             <>
-                {/* <p>{data.allGrouping.nodes[0].data.filter(data => data.signs.includes(sign.sign)).map(data => data.name).join(", ")}</p> */}
                 <div className="h4 class-title">{sign.display_name} <HintOverlay hint={sign.hint} /></div>
-                <p className="text-muted">{sign.notes}</p>
+                <SignNotes sign={sign} />
                 <VideoCollapse videoOpen={videoOpen} setVideoOpen={setVideoOpen} video_url={sign.video_url} />
             </>
         )
     } else {
-        return <Empty description="No sign is available! This is most likely an error 😥"/>
+        return <Empty description="No sign is available! This is most likely an error 😥" />
+    }
+}
+
+const SignGroupings = ({ groupingData }) => {
+    if (groupingData.grouping_name !== "all_signs") {
+        return (
+            <>
+                {
+                    groupingData.groupings.map(grouping => (
+                        <>
+                            <Badge variant="light"><a title={`Practice ${grouping.display_name.trim()}`} href={`/practice?${grouping.name}`}>{grouping.display_name}</a></Badge>{' '}
+                        </>
+                    ))
+                }
+            </>
+        )
+    } else {
+        return <Badge variant="light">All Signs</Badge>
     }
 }
 
 const PracticePage = ({ data, location }) => {
 
-    const signs = useQuerySigns(data, location).map(signName => data.allSign.nodes.find(sign => sign.sign === signName))
+    const groupingData = useQuerySigns(data, location)
 
-    let grouping = getWeeksOrCategories(data, location)
-    let groupText = <strong>all of the signs</strong>
-
-    if (grouping) {
-        const { categories, weeks } = grouping
-
-        if (categories) {
-            if (categories.length > 1) {
-                groupText = (
-                    <>
-                        the categories <strong>{categories.map(displayFormat).join(", ")}</strong>
-                    </>
-                )
-            } else {
-                // Since an empty array is falsy, it would be caught by the "if (categories)"
-                // therefore this can only ever be 1 in length
-                groupText = (
-                    <>
-                        the category <strong>{displayFormat(categories[0])}</strong>
-                    </>
-                )
-            }
-        } else if (weeks) {
-            if (weeks.length > 1) {
-                groupText = (
-                    <>
-                        the weeks <strong>{weeks.map(displayFormat).join(", ")}</strong>
-                    </>
-                )
-            } else {
-                // Since an empty array is falsy, it would be caught by the "if (weeks)"
-                // therefore this can only ever be 1 in length
-                groupText = (
-                    <>
-                        the week <strong>{displayFormat(weeks[0])}</strong>
-                    </>
-                )
-            }
-        }
-
-    }
-
-
-    const [sign, setSign] = useState(signs[0])
+    const [sign, setSign] = useState(groupingData.signs[0])
     const randomSign = () => {
-        const filteredSigns = signs.filter(s => signs.length === 1 || s.id !== sign?.id);
+        const filteredSigns = groupingData.signs.filter(s => groupingData.signs.length === 1 || s.id !== sign?.id);
         return filteredSigns[Math.floor(Math.random() * filteredSigns.length)]
     }
     const [videoOpen, setVideoOpen] = useState(false)
 
-    if (signs.length === 0) {
+    if (groupingData.signs.length === 0) {
         return (
             <>
                 <Layout>
-                    <Result status="404" title="Could not find any signs..."/>
+                    <Result status="404" title="Could not find any signs..." />
                 </Layout>
             </>
         )
@@ -179,7 +153,7 @@ const PracticePage = ({ data, location }) => {
 
     return (
         <>
-            <SEO title="Practice"/>
+            <SEO title="Practice" />
             <Layout className="pt-3">
                 <Row className="justify-content-center">
                     <Col lg={6}>
@@ -188,7 +162,7 @@ const PracticePage = ({ data, location }) => {
                                 <Nav className="flex-column flex-sm-row px-2">
                                     <Nav.Item className="mr-auto align-self-center w-75 text-left">
                                         <h6 className="my-2">Practice</h6>
-                                        <p className="text-muted">You have selected {groupText} to practice. Click the <strong>New sign <FontAwesomeIcon icon={faSync} /></strong> button to get a random new sign from your chosen selection.</p>
+                                        <p className="text-muted">Click the <strong>New sign <FontAwesomeIcon icon={faSync} /></strong> button to get a random new sign from: <SignGroupings groupingData={groupingData}/></p>
                                     </Nav.Item>
                                     <Nav.Item className="text-right align-self-center">
                                         <Button onClick={() => {
@@ -197,9 +171,10 @@ const PracticePage = ({ data, location }) => {
                                         }}>New sign <FontAwesomeIcon icon={faSync} /></Button>
                                     </Nav.Item>
                                 </Nav>
+                                
                             </Card.Header>
                             <Card.Body aria-live="assertive">
-                                <SignContent data={data} sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen}/>
+                                <SignContent data={data} sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen} />
                             </Card.Body>
                         </Card>
                     </Col>
@@ -225,9 +200,11 @@ export const query = graphql`
             nodes {
               data {
                 name
+                display_name
                 signs
               }
               name
+              display_name
             }
         } 
     }
