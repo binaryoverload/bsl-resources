@@ -163,7 +163,7 @@ const PracticePage = ({ data, location }) => {
                                 <Nav className="flex-column flex-sm-row px-2 flex-nowrap">
                                     <Nav.Item className="mr-auto align-self-center text-left">
                                         <h6 className="my-2">Practice</h6>
-                                        <p className="text-muted">Click the <strong>New sign <FontAwesomeIcon icon={faSync} /></strong> button to get a random new sign from: <SignGroupings groupingData={groupingData}/></p>
+                                        <p className="text-muted">Click the <span className="text-primary">New sign <FontAwesomeIcon icon={faSync} /></span> button to get a random new sign from: <SignGroupings groupingData={groupingData}/></p>
                                     </Nav.Item>
                                     <Nav.Item className="text-right align-self-center flex-shrink-0">
                                         <Button onClick={() => {
