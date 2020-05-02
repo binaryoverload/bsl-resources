@@ -104,25 +104,23 @@ function getData(fileName) {
         try {
             file = fs.readFileSync(fileName).toString()
         } catch (e) {
+            console.error(e)
             resolve({error: e})
         }
-        Readable.from(file.split("\n"))
+        Readable.from(file)
             .pipe(csv({
                 mapHeaders: ({ header }) => header === "" ? null : header,
-                mapValues: ({ header, value }) => {
-                    if (header === "elements") {
-                        return value.split(";")
-                    }
-                    return value
-                },
-                separator: "\t"
+                separator: '\t'
             }))
-            .on('data', (data) => results.push(data))
+            .on('data', (data) => {
+                results.push(data)
+            })
             .on('error', (error) => {
                 console.error(error)
                 resolve({ error })
             })
             .on('end', () => {
+                console.log(fileName, ": ", results.length)
                 resolve({ results })
             });
     })
