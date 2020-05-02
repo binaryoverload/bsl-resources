@@ -11,7 +11,7 @@ const ContactPage = () => (
       <SEO title="Contact Us" />
       <Layout className="pt-5">
         <h2>Get in touch!</h2>
-        <Form method="POST" data-netlify="true" name="contact">
+        <Form method="post" data-netlify="true" data-netlify-honeypot="bot-field" name="contact">
             <Form.Group controlId="name">
                 <Form.Label>Name <Required/></Form.Label>
                 <Form.Control placeholder="Enter name..."></Form.Control>
@@ -34,6 +34,7 @@ const ContactPage = () => (
                 <Form.Label>Message</Form.Label>
                 <Form.Control as="textarea" placeholder="What would you like to tell us?" rows="5" style={{resize: "none"}}/>
             </Form.Group>
+            <input type="hidden" name="form-name" value="contact" />
             <Button variant="primary" type="submit">
                 Contact us!
             </Button>
