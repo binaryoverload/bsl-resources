@@ -31,6 +31,14 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     const signData = await getData(fileBase + "signs.tsv")
     if (signData.error) throw signData.error
 
+    signData.results.forEach(sign => {
+        if (!sign.sign) {
+            console.error("Record with blank name!", JSON.stringify(sign, null, 2))
+            return
+        }
+        if (!sign.display_name) console.warn(`The sign ${sign.name} does not have a display name!`)
+    })
+
     const groupingData = {}
 
     const groupingMeta = await getData(fileBase + "groupings/groupings_meta.tsv")
