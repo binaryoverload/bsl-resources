@@ -21,7 +21,7 @@ function useQuerySigns(data, location) {
                 const matchingGroupings = grouping.data.filter(grouping => groupings.includes(grouping.name))
 
                 return {
-                    grouping_name: grouping.display_name,
+                    grouping_name: grouping.name,
                     groupings: matchingGroupings.map(category => { return { name: category.name, display_name: category.display_name } }),
                     signs: matchingGroupings.flatMap(category => category.signs)
                 }
@@ -119,7 +119,7 @@ const SignGroupings = ({ groupingData }) => {
                 {
                     groupingData.groupings.map(grouping => (
                         <>
-                            <Badge variant="light"><a title={`Practice ${grouping.display_name.trim()}`} href={`/practice?${grouping.name}`}>{grouping.display_name}</a></Badge>{' '}
+                            <Badge variant="light"><a title={`Practice ${grouping.display_name.trim()}`} target="_blank" rel="noopener" href={`/practice?${groupingData.grouping_name}=${grouping.name}`}>{grouping.display_name}</a></Badge>{' '}
                         </>
                     ))
                 }
