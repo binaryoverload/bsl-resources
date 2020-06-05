@@ -195,6 +195,7 @@ export const query = graphql`
               notes
               hint
               display_name
+              video_url
             }
         }
         allGrouping {
