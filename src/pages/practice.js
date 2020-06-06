@@ -10,7 +10,9 @@ import "antd/es/empty/style/index.css"
 import "antd/es/result/style/index.css"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSync, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSync, faQuestionCircle,  faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+
+import PageSelect from "../components/pageselect"
 
 function useQuerySigns(data, location) {
     let params = new URLSearchParams(location.search.slice(1));
@@ -37,9 +39,43 @@ function useQuerySigns(data, location) {
     }, [params, data])
 }
 
-const Video = ({ video }) => {
+const VideoSelect = ({ videos }) => {
+    let [selectedVideo, setSelectedVideo] = useState(0)
+
+    let leftVisibility = selectedVideo == 0 ? "hidden" : "visible"
+
+    const elements = []
+
+    if (videos.length <= 1) {
+        return <Video video={videos[0]}/>
+    }
+
+    elements.push(
+        <div onClick={() => setSelectedVideo(selectedVideo - 1)} style={{visibility: leftVisibility}}><FontAwesomeIcon style={{"font-size": "1.5em", "margin-right": "1em"}} icon={faChevronLeft}/></div>
+    )
+
+    for (let i = 0; i < videos.length; i++) {
+        elements.push(<div style={{width: "100%", display: (selectedVideo === i ? "flex" : "none"), position: "relative"}}><Video video={videos[i]} style={{"width": "100%"}}/>
+        {/* <span style={{"width": "100%", "position": "absolute", "background-color": "white", opacity: 0.9, color: "black", display: "inline-block", left: 0, bottom: 0}}>Hi</span> */}</div>)
+    }
+
+    elements.push(
+        <div onClick={() => setSelectedVideo(selectedVideo + 1)} style={{visibility: selectedVideo == videos.length - 1 ? "hidden" : "visible"}}><FontAwesomeIcon style={{"font-size": "1.5em", "margin-left": "1em"}} icon={faChevronRight}/></div>
+    ) 
+
+    return (
+    <>
+        <div style={{display: "flex", "align-items": "center"}}>
+            {elements}
+        </div>
+        <PageSelect current={selectedVideo} size={videos.length} callback={setSelectedVideo} />
+    </>
+    )
+}
+
+const Video = ({ video, style }) => {
     if (video) {
-        return <video src={video} autoPlay loop className="w-100"></video>
+        return <video src={video} style={style} autoPlay loop></video>
     }
     return null
 }
@@ -66,7 +102,7 @@ const HintOverlay = ({ hint }) => {
 }
 
 const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => {
-    if (video_url) {
+    if (video_url.length > 0) {
         return (
             <>
                 <Button
@@ -79,7 +115,7 @@ const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => {
                 </Button>
                 <Collapse in={videoOpen} className="m-3">
                     <div id="video-collapse">
-                        <Video video={video_url} />
+                        <VideoSelect videos={video_url} />
                     </div>
                 </Collapse>
             </>
