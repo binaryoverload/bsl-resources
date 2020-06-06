@@ -47,7 +47,7 @@ const VideoSelect = ({ videos }) => {
     const elements = []
 
     if (videos.length <= 1) {
-        return <Video video={videos[0]}/>
+        return <Video style={{width: "100%"}} video={videos[0]}/>
     }
 
     elements.push(
