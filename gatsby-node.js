@@ -22,6 +22,8 @@ function makeSignNode(sign, { createNodeId, createContentDigest }) {
         }
     };
 
+    node.video_url = node.video_url ? node.video_url.split(",") : []
+
     return node
 }
 
