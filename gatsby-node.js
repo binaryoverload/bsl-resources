@@ -22,7 +22,8 @@ function makeSignNode(sign, { createNodeId, createContentDigest }) {
         }
     };
 
-    node.video_url = node.video_url ? node.video_url.split(",") : []
+    node.videos = node.videos ? node.videos.split(",") : []
+    node.video_titles = node.video_titles ? node.video_titles.split(",") : undefined
 
     return node
 }
