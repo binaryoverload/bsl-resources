@@ -14,6 +14,8 @@ import { faSync, faQuestionCircle,  faChevronLeft, faChevronRight } from '@forta
 
 import PageSelect from "../components/pageselect"
 
+import "./practice.css"
+
 function useQuerySigns(data, location) {
     let params = new URLSearchParams(location.search.slice(1));
     return useMemo(() => {
@@ -39,33 +41,34 @@ function useQuerySigns(data, location) {
     }, [params, data])
 }
 
-const VideoSelect = ({ videos }) => {
-    let [selectedVideo, setSelectedVideo] = useState(0)
+const VideoSelect = ({ videos, video_titles, selectedVideoState}) => {
+    let [selectedVideo, setSelectedVideo] = selectedVideoState
 
     let leftVisibility = selectedVideo == 0 ? "hidden" : "visible"
+    let rightVisibility = selectedVideo == videos.length - 1 ? "hidden" : "visible"
 
     const elements = []
 
-    if (videos.length <= 1) {
-        return <Video style={{width: "100%"}} video={videos[0]}/>
-    }
-
     elements.push(
-        <div onClick={() => setSelectedVideo(selectedVideo - 1)} style={{visibility: leftVisibility}}><FontAwesomeIcon style={{"font-size": "1.5em", "margin-right": "1em"}} icon={faChevronLeft}/></div>
+        <div onClick={() => setSelectedVideo(selectedVideo - 1)} style={{visibility: leftVisibility}}><FontAwesomeIcon className="left-arrow" icon={faChevronLeft}/></div>
     )
 
     for (let i = 0; i < videos.length; i++) {
-        elements.push(<div style={{width: "100%", display: (selectedVideo === i ? "flex" : "none"), position: "relative"}}><Video video={videos[i]} style={{"width": "100%"}}/>
-        {/* <span style={{"width": "100%", "position": "absolute", "background-color": "white", opacity: 0.9, color: "black", display: "inline-block", left: 0, bottom: 0}}>Hi</span> */}</div>)
+        let subtitle = ""
+        if (video_titles && video_titles[i]) {
+            subtitle = <span className="video-subtitle">{video_titles[i]}</span>
+        }
+        elements.push(<div className="sign-video" style={{display: (selectedVideo === i ? "flex" : "none")}}><Video video={videos[i]}/>{subtitle}
+        </div>)
     }
 
     elements.push(
-        <div onClick={() => setSelectedVideo(selectedVideo + 1)} style={{visibility: selectedVideo == videos.length - 1 ? "hidden" : "visible"}}><FontAwesomeIcon style={{"font-size": "1.5em", "margin-left": "1em"}} icon={faChevronRight}/></div>
+        <div onClick={() => setSelectedVideo(selectedVideo + 1)} style={{visibility: rightVisibility}}><FontAwesomeIcon className="right-arrow" icon={faChevronRight}/></div>
     ) 
 
     return (
     <>
-        <div style={{display: "flex", "align-items": "center"}}>
+        <div className="video-select">
             {elements}
         </div>
         <PageSelect current={selectedVideo} size={videos.length} callback={setSelectedVideo} />
@@ -101,8 +104,9 @@ const HintOverlay = ({ hint }) => {
     }
 }
 
-const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => {
-    if (video_url.length > 0) {
+const VideoCollapse = ({ videos, video_titles, videoState, selectedVideoState }) => {
+    let [videoOpen, setVideoOpen] = videoState
+    if (videos.length > 0) {
         return (
             <>
                 <Button
@@ -115,7 +119,7 @@ const VideoCollapse = ({ video_url, videoOpen, setVideoOpen }) => {
                 </Button>
                 <Collapse in={videoOpen} className="m-3">
                     <div id="video-collapse">
-                        <VideoSelect videos={video_url} />
+                        <VideoSelect videos={videos} video_titles={video_titles} selectedVideoState={selectedVideoState}/>
                     </div>
                 </Collapse>
             </>
@@ -135,13 +139,13 @@ const SignNotes = ({ sign }) => {
     }
 }
 
-const SignContent = ({ data, sign, videoOpen, setVideoOpen }) => {
+const SignContent = ({ data, sign, videoState, selectedVideoState }) => {
     if (sign) {
         return (
             <>
                 <div className="h4 class-title">{sign.display_name} <HintOverlay hint={sign.hint} /></div>
                 <SignNotes sign={sign} />
-                <VideoCollapse videoOpen={videoOpen} setVideoOpen={setVideoOpen} video_url={sign.video_url} />
+                <VideoCollapse videoState={videoState} selectedVideoState={selectedVideoState} videos={sign.videos} video_titles={sign.video_titles} />
             </>
         )
     } else {
@@ -176,7 +180,11 @@ const PracticePage = ({ data, location }) => {
         const filteredSigns = groupingData.signs.filter(s => groupingData.signs.length === 1 || s.id !== sign?.id);
         return filteredSigns[Math.floor(Math.random() * filteredSigns.length)]
     }
-    const [videoOpen, setVideoOpen] = useState(false)
+    const videoState = useState(false)
+    const [videoOpen, setVideoOpen] = videoState
+
+    const selectedVideoState = useState(0)
+    const [selectedVideo, setSelectedVideo] = selectedVideoState
 
     if (groupingData.signs.length === 0) {
         return (
@@ -204,6 +212,7 @@ const PracticePage = ({ data, location }) => {
                                     <Nav.Item className="text-right align-self-center flex-shrink-0">
                                         <Button onClick={() => {
                                             setVideoOpen(false)
+                                            setSelectedVideo(0)
                                             setSign(randomSign())
                                         }}>New sign <FontAwesomeIcon icon={faSync} /></Button>
                                     </Nav.Item>
@@ -211,7 +220,7 @@ const PracticePage = ({ data, location }) => {
                                 
                             </Card.Header>
                             <Card.Body aria-live="assertive">
-                                <SignContent data={data} sign={sign} videoOpen={videoOpen} setVideoOpen={setVideoOpen} />
+                                <SignContent data={data} sign={sign} videoState={videoState} selectedVideoState={selectedVideoState} />
                             </Card.Body>
                         </Card>
                     </Col>
@@ -231,7 +240,8 @@ export const query = graphql`
               notes
               hint
               display_name
-              video_url
+              videos
+              video_titles
             }
         }
         allGrouping {

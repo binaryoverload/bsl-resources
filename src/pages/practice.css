@@ -1,0 +1,36 @@
+.video-subtitle {
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    opacity: 0.9;
+    color: black;
+    font-size: 1.2em;
+    display: inline-block;
+    left: 0;
+    bottom: 0;
+}
+
+.sign-video {
+    width: 100%;
+    position: relative;
+}
+
+.sign-video video {
+    width: 100%;
+}
+
+.video-select {
+    display: flex;
+    align-items: center;
+}
+
+.video-select .left-arrow {
+    font-size: 1.5em;
+    margin-right: 1em;
+}
+
+.video-select .right-arrow {
+    font-size: 1.5em;
+    margin-left: 1em;
+}
+
