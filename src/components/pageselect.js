@@ -6,6 +6,8 @@ const PageSelect = ({current, size, callback}) => {
 
     const dots = []
 
+    if (size <= 1) return null
+
     for (let i = 0; i < size; i++) {
         if (i == current) {
             dots.push(
