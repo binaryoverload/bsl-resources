@@ -6,6 +6,7 @@ import { Row, Col } from "react-bootstrap"
 
 import Practice from "../components/indexModules/practiceModule"
 import Dictionary from "../components/indexModules/dictionaryModule"
+import Search from "../components/indexModules/searchModule"
 
 const IndexPage = () => (
   <>
@@ -17,6 +18,11 @@ const IndexPage = () => (
         </Col>
         <Col lg={6}>
           <Dictionary/>
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={6}>
+          <Search/>
         </Col>
       </Row>
     </Layout>
