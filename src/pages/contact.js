@@ -5,6 +5,7 @@ import SEO from "../components/seo"
 import Layout from "../components/layout"
 import EmailLink from "../components/EmailLink"
 import { Form, Button, Row, Col } from "react-bootstrap"
+import "./contact.css"
 
 const Required = () => (<span className="text-danger">*</span>)
 
@@ -42,7 +43,7 @@ const ContactForm = () => (
 
 const CommitteeCard = ({ children }) => {
     return (
-        <div className="border rounded p-2 m-1 text-center" style={{"max-width": "350px"}}>
+        <div className="border rounded p-2 m-1 text-center committee-card">
             {children}
         </div>
     )

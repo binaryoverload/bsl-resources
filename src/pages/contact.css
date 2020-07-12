@@ -1,0 +1,7 @@
+.committee-card {
+    max-width: 350px;
+}
+
+.committee-card:hover {
+    background-color: #f6f8fa;
+}
