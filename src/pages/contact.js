@@ -40,27 +40,42 @@ const ContactForm = () => (
     </Form>
 )
 
+const CommitteeCard = ({ children }) => {
+    return (
+        <div className="border rounded p-2 m-1 text-center" style={{"max-width": "350px"}}>
+            {children}
+        </div>
+    )
+}
+
 const ContactPage = () => (
     <>
         <SEO title="Contact Us" />
         <Layout className="pt-5">
             <Row>
-                <Col md={{span: 4, offset: 2}}>
+                <Col md={{span: 6}}>
                     <h2>Get in touch!</h2>
                     <p>This website is run by the University of Lincoln's British Sign Language Society. We welcome any questions or feedback about this site!</p>
                     <p>You may find out more about this site or the society by visiting our <Link to="/about">about page</Link>.</p>
+                    <p>For any generic queries or to contact the whole committee, please use our Lincoln SU email: <EmailLink>bsl@lincolnsu.com</EmailLink></p>
                     <h4>Individual contact details</h4>
                     <p>Should you need to get into contact with the society's committee directly, please contact one of the emails below:</p>
-                    {/* <div>
-                        President (William Oldham)<br/>
-                        <EmailLink className="text-primary ml-2">19693813@students.lincoln.ac.uk</EmailLink>
-                    </div> */}
-                    <div>
-                        Instructor and Welfare - Lewis Duke<br/>
-                        <EmailLink className="ml-2">16647829@students.lincoln.ac.uk</EmailLink>
-                    </div>
+                    <p className="alert alert-warning" role="alert">Please only use these emails if you have a specific concern that must remain confidential or a query that is only relevant for that person.</p>
+                    <CommitteeCard>
+                        William Oldham &middot; President<br/>
+                        <EmailLink>19693813@students.lincoln.ac.uk</EmailLink>
+                    </CommitteeCard>
+                    <CommitteeCard>
+                        Charlotte Eeckelers &middot; Vice President<br/>
+                        <EmailLink>mzyce5@nottingham.ac.uk</EmailLink>
+                    </CommitteeCard>
+                    <CommitteeCard>
+                        Lewis Duke &middot; Instructor and Interim Welfare<br/>
+                        <EmailLink>16647829@students.lincoln.ac.uk</EmailLink>
+                    </CommitteeCard>
                 </Col>
-                <Col md={4}>
+                <Col md={4} className="mt-md-0 mt-4 d-flex flex-column justify-content-center">
+                    <h4 className="d-block d-md-none">Contact form</h4>
                     <ContactForm />
                 </Col>
             </Row>
